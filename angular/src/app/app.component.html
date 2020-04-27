@@ -1,0 +1,77 @@
+<div class="buttons">
+  Init-Label:
+  <!-- <button id="ct" (click)="ct()" type="button">Create 10 tabs</button>
+  <button id="ch" (click)="ch()" type="button">Create 100 tabs</button>
+  <button id="cth" (click)="cth()" type="button">Create 1000 tabs</button>
+  <button id="ctt" (click)="ctt()" type="button">Create 10000 tabs</button> -->
+  <button id="ctbl" (click)="ctbl()" type="button">Create 1000 bound labels</button>
+  <button id="cttbl" (click)="cttbl()" type="button">Create 10000 bound labels</button>
+  <!-- <button id="ctpt" (click)="ctpt()" type="button">Create 1000 entries per tab</button>
+  <button id="cttpt" (click)="cttpt()" type="button">Create 10000 entries per tab</button> -->
+  <br>
+  Init-Textboxes:
+  <button id="cttb" (click)="cttb()" type="button">Create 1000 text boxes</button>
+  <button id="ctttb" (click)="ctttb()" type="button">Create 10000 text boxes</button>
+  <button id="chttb" (click)="chttb()" type="button">Create 100000 text boxes</button>
+  <br>
+  Init-Tabs:
+  <button id="ctt" (click)="ctt()" type="button">Create 1000 tabs with 1000 entries</button>
+  <button id="cttt" (click)="cttt()" type="button">Create 10000 tabs with 1000 entries</button>
+  <button id="chtt" (click)="chtt()" type="button">Create 1000 tabs with 10000 entries</button>
+  <br>
+  Execute-Label:
+  <button id="ubl" (click)="ubl()" type="button">Update bound labels</button>
+  <button id="strl" (click)="strl()" type="button">Swap 1000 random labels</button>
+  <button id="sttrl" (click)="sttrl()" type="button">Swap 10000 random labels</button>
+  <br>
+  Execute-Tabs:
+  <button id="ut" (click)="ut()" type="button">Update tabs</button>
+  <button id="srht" (click)="srht()" type="button">Switch random 100 tabs</button>
+  <button id="srtt" (click)="srtt()" type="button">Switch random 1000 tabs</button>
+  <button id="srttt" (click)="srttt()" type="button">Switch random 10000 tabs</button>
+  <br>
+  <button id="sttrlrt" (click)="sttrlrt()" type="button">Switch 10000 random labels from random tabs</button>
+  <button id="shtrlrt" (click)="shtrlrt()" type="button">Switch 100000 random labels from random tabs</button>
+  <button id="smrlrt" (click)="smrlrt()" type="button">Switch 1000000 random labels from random tabs</button>
+  <br>
+  Execute-Textboxes:
+  <button id="utb" (click)="utb()" type="button">Update textboxes</button>
+  <button id="sthtb" (click)="sthtb()" type="button">Change text 100 textboxes</button>
+  <button id="stttb" (click)="stttb()" type="button">Change text 1000 textboxes</button>
+  <button id="sttttb" (click)="sttttb()" type="button">Change text 10000 textboxes</button>
+  <button id="sthttb" (click)="sthttb()" type="button">Change text 100000 textboxes</button>
+  <br>
+  Clear:
+  <button id="clear" (click)="clear()" type="button">Clear</button>
+
+  <!-- <button id="set" (click)="set()" type="button">Swap random entries in each tab</button>
+  <button id="sbt" (click)="sbt()" type="button">Swap random entries between tabs</button>
+  <button id="stet" (click)="stet()" type="button">Swap random 1000 entries in each tab</button>
+  <button id="stbt" (click)="stbt()" type="button">Swap random 1000 entries between tabs</button>
+  <button id="sttet" (click)="sttet()" type="button">Swap random 10000 entries in each tab</button>
+  <button id="sttbt" (click)="sttbt()" type="button">Swap random 10000 entries between tabs</button>
+
+  <button id="ttc" (click)="ttc()" type="button">10 Tabs changes random</button>
+  <button id="htc" (click)="htc()" type="button">100 Tabs changes random</button>
+  <button id="it" (click)="it()" type="button">Iterate through all tabs</button>
+  <button id="itr" (click)="itr()" type="button">Iterate through all tabs backwards</button> -->
+
+  <div id="labels">
+    <div *ngFor="let label of labels">{{label.id}} - {{label.name}}</div>
+  </div>
+  <div id="textBoxes">
+    <input *ngFor="let textbox of textBoxes;let i = index" id="tb-{{textbox.id}}" [(ngModel)]="textBoxes[i].text" type="text"/>
+  </div>
+  <div id="tabs">
+    <ng-container *ngFor="let tab of tabs">
+      <button id="tab-{{tab.id}}" (click)="showTab($event)"type="button">Tab {{tab.id}}</button>
+    </ng-container>
+    <ng-container *ngFor="let tab of tabs">
+      <ng-container *ngIf="draw">
+        <div *ngIf="activeTab === tab.id">
+          <div *ngFor="let label of tab.data">{{label.tabId}} - {{label.id}} - {{label.name}}</div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
