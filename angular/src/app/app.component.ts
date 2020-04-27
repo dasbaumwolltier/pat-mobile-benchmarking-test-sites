@@ -2258,7 +2258,7 @@ export class AppComponent implements OnInit {
   }
 
   strl() {
-    this.generatedLabels = this.labels.slice()
+    // this.generatedLabels = this.labels.slice()
 
     for(let i = 0; i < 1000; i++) {
       this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
@@ -2266,7 +2266,7 @@ export class AppComponent implements OnInit {
   }
 
   sttrl() {
-    this.generatedLabels = this.labels.slice()
+    // this.generatedLabels = this.labels.slice()
 
     for(let i = 0; i < 10000; i++) {
       this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
