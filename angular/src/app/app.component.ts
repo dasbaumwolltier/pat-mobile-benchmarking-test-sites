@@ -2244,9 +2244,7 @@ export class AppComponent implements OnInit {
   }
 
   ubl() {
-    console.log(new Date().getTime())
     this.labels = this.generatedLabels
-    setTimeout(() => console.log(new Date().getTime()), 0)
   }
 
   ut() {
