@@ -57,7 +57,7 @@
   <button id="itr" (click)="itr()" type="button">Iterate through all tabs backwards</button> -->
 
   <div id="labels">
-    <div *ngFor="let label of labels">{{label.id}} - {{label.name}}</div>
+    <div *ngFor="let label of labels" id="bl-{{label.id}}">{{label.id}} - {{label.name}}</div>
   </div>
   <div id="textBoxes">
     <input *ngFor="let textbox of textBoxes;let i = index" id="tb-{{textbox.id}}" [(ngModel)]="textBoxes[i].text" type="text"/>

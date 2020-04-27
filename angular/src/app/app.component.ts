@@ -1,6 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DynamicLoaderService } from './dynamic-loader.service';
-import { TabComponent } from './tab/tab.component';
 import { Label } from './classes/label';
 import { Tab } from './classes/tab';
 import { TextBox } from './classes/textBox';
@@ -2119,10 +2117,6 @@ const nouns: Array<String> = [
 })
 export class AppComponent implements OnInit {
   draw: boolean = true
-
-  tabList: Array<TabComponent>
-  dynamicLoader: DynamicLoaderService
-
   title = 'angular'
   activeTab = 0
 
@@ -2133,10 +2127,6 @@ export class AppComponent implements OnInit {
   generatedLabels: Array<Label> = []
   generatedTabs: Array<Tab> = []
   generatedTextBoxes: Array<TextBox> = []
-
-  constructor(@Inject(DynamicLoaderService) dynamicLoader) {
-    this.dynamicLoader = dynamicLoader
-  }
 
   ngOnInit() {
 
