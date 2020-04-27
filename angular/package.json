@@ -2,7 +2,8 @@
   "name": "angular",
   "version": "1.0.0",
   "js-framework-benchmark": {
-    "frameworkVersionFromPackage": "@angular/core"
+    "frameworkVersionFromPackage": "@angular/core",
+    "customURL": "/dist/angular-ng/"
   },
   "scripts": {
     "ng": "ng",
