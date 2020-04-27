@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Label } from './classes/label';
 import { Tab } from './classes/tab';
 import { TextBox } from './classes/textBox';
+import { VirtualTimeScheduler } from 'rxjs';
 
 const colors: Array<string> = [
   "aliceblue",
@@ -2255,21 +2256,27 @@ export class AppComponent implements OnInit {
     this.textBoxes = this.generatedTextBoxes
   }
 
-  strl(index = 0) {
-    if(index < 1000) {
-      setTimeout(() => {
-        this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
-        this.strl(index + 1)
-      }, 0);
+  sbl() {
+    this.swap(this.labels, 0, 500)
+  }
+
+  srbl() {
+    this.swap(this.labels, Math.floor(Math.random() * this.labels.length), Math.floor(Math.random() * this.labels.length))
+  }
+
+  strl() {
+    this.generatedLabels = this.labels.slice()
+
+    for(let i = 0; i < 1000; i++) {
+      this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
     }
   }
 
-  sttrl(index = 0) {
-    if(index < 10000) {
-      setTimeout(() => {
-        this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
-        this.strl(index + 1)
-      }, 0);
+  sttrl() {
+    this.generatedLabels = this.labels.slice()
+
+    for(let i = 0; i < 10000; i++) {
+      this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
     }
   }
 
