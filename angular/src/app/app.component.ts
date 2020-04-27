@@ -2255,23 +2255,25 @@ export class AppComponent implements OnInit {
     this.textBoxes = this.generatedTextBoxes
   }
 
-  strl() {
-    // this.generatedLabels = this.labels.slice()
-
-    for(let i = 0; i < 1000; i++) {
-      this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
+  strl(index = 0) {
+    if(index < 1000) {
+      setTimeout(() => {
+        this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
+        this.strl(index + 1)
+      }, 0);
     }
   }
 
-  sttrl() {
-    // this.generatedLabels = this.labels.slice()
-
-    for(let i = 0; i < 10000; i++) {
-      this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
+  sttrl(index = 0) {
+    if(index < 10000) {
+      setTimeout(() => {
+        this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
+        this.strl(index + 1)
+      }, 0);
     }
   }
 
-  srht(beginIndex: number = 0) {
+  srht(beginIndex = 0) {
     if(beginIndex < 100) {
       setTimeout(() => {
         this.activeTab = Math.floor(Math.random() * this.tabs.length)
@@ -2280,7 +2282,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  srtt(beginIndex: number = 0) {
+  srtt(beginIndex = 0) {
     if(beginIndex < 1000) {
       setTimeout(() => {
         this.activeTab = Math.floor(Math.random() * this.tabs.length)
@@ -2289,7 +2291,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  srttt(beginIndex: number = 0) {
+  srttt(beginIndex = 0) {
     if(beginIndex < 1000) {
       setTimeout(() => {
         this.activeTab = Math.floor(Math.random() * this.tabs.length)
