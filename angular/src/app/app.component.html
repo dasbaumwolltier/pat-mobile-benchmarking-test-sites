@@ -60,21 +60,12 @@
   <button id="itr" (click)="itr()" type="button">Iterate through all tabs backwards</button> -->
 
   <div id="labels">
-    <div *ngFor="let label of labels" id="bl-{{label.id}}">{{label.id}} - {{label.name}}</div>
+    <app-label *ngFor="let label of labels" id="bl-{{label.id}}" labelId="{{label.id}}">{{label.name}}</app-label>
   </div>
   <div id="textBoxes">
-    <input *ngFor="let textbox of textBoxes;let i = index" id="tb-{{textbox.id}}" [(ngModel)]="textBoxes[i].text" type="text"/>
+    <app-text-box *ngFor="let textbox of textBoxes;let i=index" [(tb)]="textBoxes[i]"></app-text-box>
   </div>
   <div id="tabs">
-    <ng-container *ngFor="let tab of tabs">
-      <button id="tab-{{tab.id}}" (click)="showTab($event)"type="button">Tab {{tab.id}}</button>
-    </ng-container>
-    <ng-container *ngFor="let tab of tabs">
-      <ng-container *ngIf="draw">
-        <div *ngIf="activeTab === tab.id">
-          <div *ngFor="let label of tab.data">{{label.tabId}} - {{label.id}} - {{label.name}}</div>
-        </div>
-      </ng-container>
-    </ng-container>
+    <app-tabs [tabsData]="tabs"></app-tabs>
   </div>
 </div>

@@ -1,0 +1,3 @@
+<div *ngIf="activeTab === tabId">
+  <app-label *ngFor="let label of labelData" tabId="{{tabId}}" labelId="{{label.id}}">{{label.name}}</app-label>
+</div>

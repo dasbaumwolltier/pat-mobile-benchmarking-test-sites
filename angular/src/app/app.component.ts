@@ -2259,6 +2259,7 @@ export class AppComponent implements OnInit {
 
   ut() {
     this.tabs = this.generatedTabs
+    setTimeout(() => this.activeTab = 0, 100)
   }
 
   utb() {
@@ -2355,9 +2356,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  showTab(event: MouseEvent) {
-    this.activeTab = parseInt((event.target as HTMLButtonElement).id.split('-')[1]);
-    console.log(this.activeTab)
+  showTab(index: number) {
+    console.log(index)
+    this.activeTab = index
   }
 
   swap(arr: Array<Object>, indexA: number, indexB: number) {
