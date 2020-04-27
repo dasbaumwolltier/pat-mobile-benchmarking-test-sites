@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { TabComponent } from './tab/tab.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TabComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
