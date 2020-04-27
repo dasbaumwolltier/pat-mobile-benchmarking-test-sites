@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "js-framework-benchmark": {
     "frameworkVersionFromPackage": "@angular/core",
-    "customURL": "/dist/angular-ng/"
+    "customURL": "/dist/angular/"
   },
   "scripts": {
     "ng": "ng",
