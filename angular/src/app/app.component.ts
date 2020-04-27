@@ -2148,6 +2148,7 @@ export class AppComponent implements OnInit {
     return item.id
   }
 
+  //Creates a thousand bound labels
   ctbl() {
     this.generatedLabels = []
 
@@ -2160,6 +2161,14 @@ export class AppComponent implements OnInit {
     this.generatedLabels = []
 
     for(let i = 0; i < 10000; i++) {
+      this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+    }
+  }
+
+  chtbl() {
+    this.generatedLabels = []
+
+    for(let i = 0; i < 100000; i++) {
       this.generatedLabels.push(new Label(i, this.generateRandomWords()))
     }
   }
