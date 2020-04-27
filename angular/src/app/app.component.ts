@@ -2281,6 +2281,14 @@ export class AppComponent implements OnInit {
     }
   }
 
+  st() {
+    this.activeTab = (this.activeTab == 0) ? 500 : 0
+  }
+
+  srt() {
+    this.activeTab = Math.floor(Math.random() * this.tabs.length)
+  }
+
   srht(beginIndex = 0) {
     if(beginIndex < 100) {
       setTimeout(() => {
