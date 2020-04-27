@@ -2165,14 +2165,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  chtbl() {
-    this.generatedLabels = []
-
-    for(let i = 0; i < 100000; i++) {
-      this.generatedLabels.push(new Label(i, this.generateRandomWords()))
-    }
-  }
-
   ctt() {
     this.generatedTabs = []
 
@@ -2259,7 +2251,6 @@ export class AppComponent implements OnInit {
 
   ut() {
     this.tabs = this.generatedTabs
-    setTimeout(() => this.activeTab = 0, 100)
   }
 
   utb() {
