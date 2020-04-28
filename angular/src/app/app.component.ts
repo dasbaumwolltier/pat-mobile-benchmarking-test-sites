@@ -2148,7 +2148,11 @@ export class AppComponent implements OnInit {
     return item.id
   }
 
-  //Creates a thousand bound labels
+
+
+
+  //Labels
+
   ctbl() {
     this.generatedLabels = []
 
@@ -2165,88 +2169,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  ctt() {
-    this.generatedTabs = []
-
-    for(let i = 0; i < 1000; i++) {
-      this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
-    }
-  }
-
-  cttt() {
-    this.generatedTabs = []
-
-    for(let i = 0; i < 10000; i++) {
-      this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
-    }
-  }
-
-  chtt() {
-    this.generatedTabs = []
-
-    for(let i = 0; i < 1000; i++) {
-      this.generatedTabs.push(new Tab(i, this.generateRandomArray(10000)))
-    }
-  }
-
-  cmt() {
-    this.generatedTabs = []
-
-    for(let i = 0; i < 1000000; i++) {
-      this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
-    }
-  }
-
-  cttb() {
-    this.generatedTextBoxes = []
-
-    for(let i = 0; i < 1000; i++) {
-      this.generatedTextBoxes.push(new TextBox(i, ""))
-    }
-  }
-
-  ctttb() {
-    this.generatedTextBoxes = []
-
-    for(let i = 0; i < 10000; i++) {
-      this.generatedTextBoxes.push(new TextBox(i, ""))
-    }
-  }
-
-  chthtb() {
-    for(let i = 0; i < 100; i++) {
-      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
-    }
-  }
-
-  chtttb() {
-    for(let i = 0; i < 1000; i++) {
-      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
-    }
-  }
-
-  chttttb() {
-    for(let i = 0; i < 10000; i++) {
-      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
-    }
-  }
-
-  chthttb() {
-    for(let i = 0; i < 100000; i++) {
-      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
-    }
-  }
-
   ubl() {
     this.labels = this.generatedLabels
-  }
-
-  ut() {
-    this.tabs = this.generatedTabs
-  }
-
-  utb() {
-    this.textBoxes = this.generatedTextBoxes
   }
 
   sbl() {
@@ -2286,6 +2210,38 @@ export class AppComponent implements OnInit {
     this.generatedLabels = this.labels.filter((v, i, a) => {
       return !indices.includes(i)
     })
+  }
+
+
+
+
+  //Tabs
+
+  ctt() {
+    this.generatedTabs = []
+
+    for(let i = 0; i < 1000; i++) {
+      this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+    }
+  }
+
+  cttt() {
+    this.generatedTabs = []
+
+    for(let i = 0; i < 10000; i++) {
+      this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+    }
+  }
+
+  chtt() {
+    this.generatedTabs = []
+
+    for(let i = 0; i < 1000; i++) {
+      this.generatedTabs.push(new Tab(i, this.generateRandomArray(10000)))    }
+  }
+
+  ut() {
+    this.tabs = this.generatedTabs
   }
 
   st() {
@@ -2361,6 +2317,85 @@ export class AppComponent implements OnInit {
       this.tabs[b].data[bb] = tmp
     }
   }
+
+
+
+  //TextBoxes
+
+  cttb() {
+    this.generatedTextBoxes = []
+
+    for(let i = 0; i < 1000; i++) {
+      this.generatedTextBoxes.push(new TextBox(i, ""))
+    }
+  }
+
+  ctttb() {
+    this.generatedTextBoxes = []
+
+    for(let i = 0; i < 10000; i++) {
+      this.generatedTextBoxes.push(new TextBox(i, ""))
+    }
+  }
+
+  utb() {
+    this.textBoxes = this.generatedTextBoxes
+  }
+
+  chthtb() {
+    for(let i = 0; i < 100; i++) {
+      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+    }
+  }
+
+  chtttb() {
+    for(let i = 0; i < 1000; i++) {
+      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+    }
+  }
+
+  chttttb() {
+    for(let i = 0; i < 10000; i++) {
+      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+    }
+  }
+
+  rtb() {
+    this.textBoxes.shift()
+  }
+
+  rrtb() {
+    this.textBoxes.splice(Math.floor(Math.random() * this.textBoxes.length), 1)
+  }
+
+  rhrtb() {
+    this.generatedLabels = this.labels.slice()
+    let indices = []
+
+    for(let i = 0; i < 100; i++) {
+      indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+    }
+
+    this.generatedLabels = this.labels.filter((v, i, a) => {
+      return !indices.includes(i)
+    })
+  }
+
+  rtrtb() {
+    this.generatedLabels = this.labels.slice()
+    let indices = []
+
+    for(let i = 0; i < 1000; i++) {
+      indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+    }
+
+    this.generatedLabels = this.labels.filter((v, i, a) => {
+      return !indices.includes(i)
+    })
+  }
+
+
+
 
   showTab(index: number) {
     console.log(index)
