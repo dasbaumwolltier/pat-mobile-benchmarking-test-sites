@@ -2217,6 +2217,14 @@ export class AppComponent implements OnInit {
 
   //Tabs
 
+  cht() {
+    this.generatedTabs = []
+
+    for(let i = 0; i < 100; i++) {
+      this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+    }
+  }
+
   ctt() {
     this.generatedTabs = []
 
