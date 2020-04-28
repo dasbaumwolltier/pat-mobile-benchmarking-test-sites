@@ -11,7 +11,6 @@
   <button id="cht" (click)="cht()" type="button">Create 100 tabs with 1000 entries</button>
   <button id="ctt" (click)="ctt()" type="button">Create 1000 tabs with 1000 entries</button>
   <button id="cttt" (click)="cttt()" type="button">Create 10000 tabs with 1000 entries</button>
-  <button id="chtt" (click)="chtt()" type="button">Create 1000 tabs with 10000 entries</button>
   <br>
   Execute-Label:
   <button id="ubl" (click)="ubl()" type="button">Update bound labels</button>
@@ -25,15 +24,12 @@
   <br>
   Execute-Tabs:
   <button id="ut" (click)="ut()" type="button">Update tabs</button>
-  <button id="sa" (click)="sa()" type="button">Set active tab to 0</button>
   <button id="st" (click)="st()" type="button">Switch tabs</button>
   <button id="srt" (click)="srt()" type="button">Switch random tabs</button>
   <button id="shrt" (click)="shrt()" type="button">Switch random 100 tabs</button>
-  <button id="strt" (click)="strt()" type="button">Switch random 1000 tabs</button>
   <br>
   <button id="strlrt" (click)="strlrt()" type="button">Switch 10000 random labels from random tabs</button>
   <button id="shtrlrt" (click)="shtrlrt()" type="button">Switch 100000 random labels from random tabs</button>
-  <button id="smrlrt" (click)="smrlrt()" type="button">Switch 1000000 random labels from random tabs</button>
   <br>
   Execute-Textboxes:
   <button id="utb" (click)="utb()" type="button">Update textboxes</button>
@@ -48,18 +44,6 @@
   <br>
   Clear:
   <button id="clear" (click)="clear()" type="button">Clear</button>
-
-  <!-- <button id="set" (click)="set()" type="button">Swap random entries in each tab</button>
-  <button id="sbt" (click)="sbt()" type="button">Swap random entries between tabs</button>
-  <button id="stet" (click)="stet()" type="button">Swap random 1000 entries in each tab</button>
-  <button id="stbt" (click)="stbt()" type="button">Swap random 1000 entries between tabs</button>
-  <button id="sttet" (click)="sttet()" type="button">Swap random 10000 entries in each tab</button>
-  <button id="sttbt" (click)="sttbt()" type="button">Swap random 10000 entries between tabs</button>
-
-  <button id="ttc" (click)="ttc()" type="button">10 Tabs changes random</button>
-  <button id="htc" (click)="htc()" type="button">100 Tabs changes random</button>
-  <button id="it" (click)="it()" type="button">Iterate through all tabs</button>
-  <button id="itr" (click)="itr()" type="button">Iterate through all tabs backwards</button> -->
 
   <div id="labels">
     <app-label *ngFor="let label of labels;trackBy: trackById" id="bl-{{label.id}}" labelId="{{label.id}}">{{label.name}}</app-label>

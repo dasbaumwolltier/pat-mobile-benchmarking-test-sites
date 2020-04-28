@@ -2241,19 +2241,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  chtt() {
-    this.generatedTabs = []
-
-    for(let i = 0; i < 1000; i++) {
-      this.generatedTabs.push(new Tab(i, this.generateRandomArray(10000)))    }
-  }
-
   ut() {
     this.tabs = this.generatedTabs
-  }
-
-  sa() {
-    this.activeTab = 0
   }
 
   st() {
@@ -2266,24 +2255,6 @@ export class AppComponent implements OnInit {
 
   shrt(beginIndex = 0) {
     if(beginIndex < 100) {
-      setTimeout(() => {
-        this.activeTab = Math.floor(Math.random() * this.tabs.length)
-        this.shrt(beginIndex + 1)
-      }, 0)
-    }
-  }
-
-  strt(beginIndex = 0) {
-    if(beginIndex < 1000) {
-      setTimeout(() => {
-        this.activeTab = Math.floor(Math.random() * this.tabs.length)
-        this.shrt(beginIndex + 1)
-      }, 0)
-    }
-  }
-
-  strtt(beginIndex = 0) {
-    if(beginIndex < 1000) {
       setTimeout(() => {
         this.activeTab = Math.floor(Math.random() * this.tabs.length)
         this.shrt(beginIndex + 1)
@@ -2317,18 +2288,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  smrlrt() {
-    for(let i = 0; i < 1000000; i++) {
-      let a = Math.floor(Math.random() * this.tabs.length)
-      let aa = Math.floor(Math.random() * this.tabs[a].data.length)
-      let b = Math.floor(Math.random() * this.tabs.length)
-      let bb = Math.floor(Math.random() * this.tabs[b].data.length)
-
-      let tmp = this.tabs[a].data[aa]
-      this.tabs[a].data[aa] = this.tabs[b].data[bb]
-      this.tabs[b].data[bb] = tmp
-    }
-  }
 
 
 
