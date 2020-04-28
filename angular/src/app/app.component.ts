@@ -2291,7 +2291,7 @@ export class AppComponent implements OnInit {
       indices.push(Math.floor(Math.random() * this.generatedLabels.length))
     }
 
-    this.generatedLabels = this.generatedLabels.filter((v, i, a) => {
+    this.labels = this.labels.filter((v, i, a) => {
       indices.includes(i)
     })
   }
