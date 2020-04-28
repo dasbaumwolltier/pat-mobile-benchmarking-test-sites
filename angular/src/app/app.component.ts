@@ -2326,7 +2326,7 @@ export class AppComponent implements OnInit {
     this.generatedTextBoxes = []
 
     for(let i = 0; i < 1000; i++) {
-      this.generatedTextBoxes.push(new TextBox(i, ""))
+      this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
     }
   }
 
@@ -2334,7 +2334,7 @@ export class AppComponent implements OnInit {
     this.generatedTextBoxes = []
 
     for(let i = 0; i < 10000; i++) {
-      this.generatedTextBoxes.push(new TextBox(i, ""))
+      this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
     }
   }
 
