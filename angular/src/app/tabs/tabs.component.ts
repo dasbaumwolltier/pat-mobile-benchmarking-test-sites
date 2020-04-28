@@ -19,4 +19,8 @@ export class TabsComponent implements OnInit {
   showTab(index) {
     this.activeTab = index
   }
+
+  trackById(index, item) {
+    return item.id
+  }
 }

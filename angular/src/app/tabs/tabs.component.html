@@ -1,2 +1,2 @@
-<app-tab-button *ngFor="let tab of tabs" tabId="{{tab.id}}" (onActivate)="showTab($event)"></app-tab-button>
-<app-tab-content *ngFor="let tab of tabs" tabId="{{tab.id}}" [activeTab]="activeTab" [labelData]="tab.data"></app-tab-content>
+<app-tab-button *ngFor="let tab of tabs;trackBy: trackById" tabId="{{tab.id}}" (onActivate)="showTab($event)"></app-tab-button>
+<app-tab-content *ngFor="let tab of tabs;trackBy: trackById" tabId="{{tab.id}}" [activeTab]="activeTab" [labelData]="tab.data"></app-tab-content>
