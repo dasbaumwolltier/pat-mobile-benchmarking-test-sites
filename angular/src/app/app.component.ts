@@ -2221,25 +2221,25 @@ export class AppComponent implements OnInit {
     }
   }
 
-  cthtb() {
+  chthtb() {
     for(let i = 0; i < 100; i++) {
       this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
     }
   }
 
-  ctttb() {
+  chtttb() {
     for(let i = 0; i < 1000; i++) {
       this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
     }
   }
 
-  cttttb() {
+  chttttb() {
     for(let i = 0; i < 10000; i++) {
       this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
     }
   }
 
-  cthttb() {
+  chthttb() {
     for(let i = 0; i < 100000; i++) {
       this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
     }
