@@ -1,4 +1,68 @@
 <template>
+<div class="buttons">
+  Init-Label:
+  <button id="ctbl" v-on:click="ctbl" type="button">Create 1000 bound labels</button>
+  <button id="cttbl" v-on:click="cttbl" type="button">Create 10000 bound labels</button>
+  <br>
+  Init-Textboxes:
+  <button id="cttb" v-on:click="cttb" type="button">Create 1000 text boxes</button>
+  <button id="ctttb" v-on:click="ctttb" type="button">Create 10000 text boxes</button>
+  <br>
+  Init-Tabs:
+  <button id="cht" v-on:click="cht" type="button">Create 100 tabs with 1000 entries</button>
+  <button id="ctt" v-on:click="ctt" type="button">Create 1000 tabs with 1000 entries</button>
+  <button id="cttt" v-on:click="cttt" type="button">Create 10000 tabs with 1000 entries</button>
+  <br>
+  Execute-Label:
+  <button id="ubl" v-on:click="ubl" type="button">Update bound labels</button>
+  <button id="sbl" v-on:click="sbl" type="button">Swap two labels</button>
+  <button id="srbl" v-on:click="srbl" type="button">Swap two random labels</button>
+  <button id="strbl" v-on:click="strbl" type="button">Swap 1000 random labels</button>
+  <br>
+  <button id="rbl" v-on:click="rbl" type="button">Remove a label</button>
+  <button id="rrbl" v-on:click="rrbl" type="button">Remove a random label</button>
+  <button id="rtrbl" v-on:click="rtrbl" type="button">Remove 1000 random labels</button>
+  <br>
+  Execute-Tabs:
+  <button id="ut" v-on:click="ut" type="button">Update tabs</button>
+  <button id="st" v-on:click="st" type="button">Switch tabs</button>
+  <button id="srt" v-on:click="srt" type="button">Switch random tabs</button>
+  <button id="shrt" v-on:click="shrt" type="button">Switch random 100 tabs</button>
+  <br>
+  <button id="strlrt" v-on:click="strlrt" type="button">Switch 10000 random labels from random tabs</button>
+  <button id="shtrlrt" v-on:click="shtrlrt" type="button">Switch 100000 random labels from random tabs</button>
+  <br>
+  Execute-Textboxes:
+  <button id="utb" v-on:click="utb" type="button">Update textboxes</button>
+  <button id="chthtb" v-on:click="chthtb" type="button">Change text 100 textboxes</button>
+  <button id="chtttb" v-on:click="chtttb" type="button">Change text 1000 textboxes</button>
+  <button id="chttttb" v-on:click="chttttb" type="button">Change text 10000 textboxes</button>
+  <br>
+  <button id="rtb" v-on:click="rtb" type="button">Remove textbox</button>
+  <button id="rrtb" v-on:click="rrtb" type="button">Remove random textbox</button>
+  <button id="rhrtb" v-on:click="rhrtb" type="button">Remove 100 random textboxes</button>
+  <button id="rtrtb" v-on:click="rtrtb" type="button">Remove 1000 random textboxes</button>
+  <br>
+  Clear:
+  <button id="clear" v-on:click="clear" type="button">Clear</button>
+
+  <div id="labels">
+    <app-label></app-label>
+  </div>
+
+  <!-- <div id="labels">
+    <app-label *ngFor="let label of labels;trackBy: trackById" id="bl-{{label.id}}" labelId="{{label.id}}">{{label.name}}</app-label>
+  </div>
+  <div id="textBoxes">
+    <app-text-box *ngFor="let textbox of textBoxes;let i=index;trackBy: trackById" [(tb)]="textBoxes[i]"></app-text-box>
+  </div>
+  <div id="tabs">
+    <app-tabs [tabsData]="tabs"></app-tabs>
+  </div> -->
+</div>
+</template>
+
+<!-- <template>
   <div id="app">
    <template>
     <div class="container">
@@ -9,7 +73,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-sm-6 smallpad">
+                        <!-- <div class="col-sm-6 smallpad">
                           <button type="button" class="btn btn-primary btn-block" id="run" v-on:click="run">Create 1,000 rows</button>
                         </div>
                         <div class="col-sm-6 smallpad">
@@ -31,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <table class="table table-hover table-striped test-data" @click="handleClick">
+        <table class="table table-hover table-striped test-data" v-on:click="handleClick">
             <tbody>
                 <tr v-for="item in rows" :key="item.id" :class="{'danger': item.id == selected}">
                     <td class="col-md-1">{{item.id}}</td>
@@ -48,7 +112,7 @@
                 </tr>
             </tbody>
         </table>
-        <table class="table table-hover table-striped test-data" @click="handleClick">
+        <table class="table table-hover table-striped test-data" v-on:click="handleClick">
             <tbody>
               <tr v-for="item in rows" :key="item.id" :class="{'danger': item.id == selected}">
                     <td class="col-md-1">{{item.id}}</td>
@@ -62,16 +126,16 @@
                 </tr>
             </tbody>
         </table>
-        
-        <table class="table table-hover table-striped test-data" @click="handleClick">
+
+        <table class="table table-hover table-striped test-data" v-on:click="handleClick">
             <tbody>
             <tabs>
               <tr v-for="item in rows" :key="item.id" :class="{'danger': item.id == selected}">
-                
+
                     <tab :id = "item.id" :name = "item.id">
                     <span>{{item.label}} </span>
                     </tab>
-                
+
               </tr>
             </tabs>
             </tbody>
@@ -81,11 +145,11 @@
     </div>
 </template>
   </div>
-</template>
+</template>-->
 
 <script>
 import { Store } from './store';
-var store = new Store();
+var store = new Store;
 
 export default {
     data: () => ({
@@ -93,48 +157,513 @@ export default {
         selected: store.selected
     }),
     methods: {
-        handleClick (e) {
-            const { action, id } = e.target.dataset
-            if (action && id) {
-                this[action](id)
-            }
-        },
-        add() {
-            store.add();
-            this.sync();
-        },
-        remove(id) {
-            store.delete(id);
-            this.sync();
-        },
-        select(id) {
-            store.select(id);
-            this.sync();
-        },
-        run() {
-            store.run();
-            this.sync();
-        },
-        update() {
-            store.update();
-            this.sync();
-        },
-        runLots() {
-            store.runLots();
-            this.sync();
-        },
         clear() {
-            store.clear();
-            this.sync();
+          this.labels = []
+          this.generatedLabels = []
+
+          this.tabs = []
+          this.generatedTabs = []
+
+          this.textBoxes = []
+          this.generatedTabs = []
         },
-        swapRows() {
-            store.swapRows();
-            this.sync();
+        trackById(index, item) {
+          return item.id
         },
-        sync() {
-            this.rows = Object.freeze(store.data);
-            this.selected = store.selected;
-        }
+
+
+
+
+        //Labels
+
+        ctbl() {
+          this.generatedLabels = []
+
+          for(let i = 0; i < 1000; i++) {
+            this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+          }
+        },
+
+        cttbl() {
+          this.generatedLabels = []
+
+          for(let i = 0; i < 10000; i++) {
+            this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+          }
+        },
+
+        ubl() {
+          this.labels = this.generatedLabels
+        },
+
+        sbl() {
+          this.swap(this.labels, 0, 50)
+        },
+
+        srbl() {
+          this.swap(this.labels, Math.floor(Math.random() * this.labels.length), Math.floor(Math.random() * this.labels.length))
+        },
+
+        strbl() {
+          this.generatedLabels = this.labels.slice()
+
+          for(let i = 0; i < 1000; i++) {
+            this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
+          }
+        },
+
+        rbl() {
+          this.labels.shift()
+        },
+
+        rrbl() {
+          let index = Math.floor(Math.random() * this.labels.length)
+          this.labels.splice(index, 1)
+          console.log(index)
+        },
+
+        rtrbl() {
+          this.generatedLabels = this.labels.slice()
+          let indices = []
+
+          for(let i = 0; i < 1000; i++) {
+            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+          }
+
+          this.generatedLabels = this.labels.filter((v, i, a) => {
+            return !indices.includes(i)
+          })
+        },
+
+
+
+
+        //Tabs
+
+        cht() {
+          this.generatedTabs = []
+
+          for(let i = 0; i < 100; i++) {
+            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+          }
+        },
+
+        ctt() {
+          this.generatedTabs = []
+
+          for(let i = 0; i < 1000; i++) {
+            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+          }
+        },
+
+        cttt() {
+          this.generatedTabs = []
+
+          for(let i = 0; i < 10000; i++) {
+            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+          }
+        },
+
+        ut() {
+          this.tabs = this.generatedTabs
+        },
+
+        st() {
+          this.activeTab = (this.activeTab == 0) ? 50 : 0
+        },
+
+        srt() {
+          this.activeTab = Math.floor(Math.random() * this.tabs.length)
+        },
+
+        shrt(beginIndex = 0) {
+          if(beginIndex < 100) {
+            setTimeout(() => {
+              this.activeTab = Math.floor(Math.random() * this.tabs.length)
+              this.shrt(beginIndex + 1)
+            }, 0)
+          }
+        },
+
+        strlrt() {
+          for(let i = 0; i < 10000; i++) {
+            let a = Math.floor(Math.random() * this.tabs.length)
+            let aa = Math.floor(Math.random() * this.tabs[a].data.length)
+            let b = Math.floor(Math.random() * this.tabs.length)
+            let bb = Math.floor(Math.random() * this.tabs[b].data.length)
+
+            let tmp = this.tabs[a].data[aa]
+            this.tabs[a].data[aa] = this.tabs[b].data[bb]
+            this.tabs[b].data[bb] = tmp
+          }
+        },
+
+        shtrlrt() {
+          for(let i = 0; i < 100000; i++) {
+            let a = Math.floor(Math.random() * this.tabs.length)
+            let aa = Math.floor(Math.random() * this.tabs[a].data.length)
+            let b = Math.floor(Math.random() * this.tabs.length)
+            let bb = Math.floor(Math.random() * this.tabs[b].data.length)
+
+            let tmp = this.tabs[a].data[aa]
+            this.tabs[a].data[aa] = this.tabs[b].data[bb]
+            this.tabs[b].data[bb] = tmp
+          }
+        },
+
+
+
+
+        //TextBoxes
+
+        cttb() {
+          this.generatedTextBoxes = []
+
+          for(let i = 0; i < 1000; i++) {
+            this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
+          }
+        },
+
+        ctttb() {
+          this.generatedTextBoxes = []
+
+          for(let i = 0; i < 10000; i++) {
+            this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
+          }
+        },
+
+        utb() {
+          this.textBoxes = this.generatedTextBoxes
+        },
+
+        chthtb() {
+          for(let i = 0; i < 100; i++) {
+            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+          }
+        },
+
+        chtttb() {
+          for(let i = 0; i < 1000; i++) {
+            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+          }
+        },
+
+        chttttb() {
+          for(let i = 0; i < 10000; i++) {
+            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+          }
+        },
+
+        rtb() {
+          this.textBoxes.shift()
+        },
+
+        rrtb() {
+          this.textBoxes.splice(Math.floor(Math.random() * this.textBoxes.length), 1)
+        },
+
+        rhrtb() {
+          this.generatedLabels = this.labels.slice()
+          let indices = []
+
+          for(let i = 0; i < 100; i++) {
+            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+          }
+
+          this.generatedLabels = this.labels.filter((v, i, a) => {
+            return !indices.includes(i)
+          })
+        },
+
+        rtrtb() {
+          this.generatedLabels = this.labels.slice()
+          let indices = []
+
+          for(let i = 0; i < 1000; i++) {
+            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+          }
+
+          this.generatedLabels = this.labels.filter((v, i, a) => {
+            return !indices.includes(i)
+          })
+        },
+
+
+
+        showTab(index) {
+          console.log(index)
+          this.activeTab = index
+        },
+
+        swap(arr, indexA, indexB) {
+          let tmp = arr[indexA]
+          arr[indexA] = arr[indexB]
+          arr[indexB] = tmp
+        },
+
+        generateRandomArray(size) {
+          let result = []
+
+          for(let i = 0; i < size; i++) {
+            result.push(new Label(i, this.generateRandomWords()))
+          }
+       this.labels = []
+          this.generatedLabels = []
+
+          this.tabs = []
+          this.generatedTabs = []
+
+          this.textBoxes = []
+          this.generatedTabs = []
+        },
+
+        trackById(index, item) {
+          return item.id
+        },
+
+
+
+
+        //Labels
+
+        ctbl() {
+          this.generatedLabels = []
+
+          for(let i = 0; i < 1000; i++) {
+            this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+          }
+        },
+
+        cttbl() {
+          this.generatedLabels = []
+
+          for(let i = 0; i < 10000; i++) {
+            this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+          }
+        },
+
+        ubl() {
+          this.labels = this.generatedLabels
+        },
+
+        sbl() {
+          this.swap(this.labels, 0, 50)
+        },
+
+        srbl() {
+          this.swap(this.labels, Math.floor(Math.random() * this.labels.length), Math.floor(Math.random() * this.labels.length))
+        },
+
+        strbl() {
+          this.generatedLabels = this.labels.slice()
+
+          for(let i = 0; i < 1000; i++) {
+            this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
+          }
+        },
+
+        rbl() {
+          this.labels.shift()
+        },
+
+        rrbl() {
+          let index = Math.floor(Math.random() * this.labels.length)
+          this.labels.splice(index, 1)
+          console.log(index)
+        },
+
+        rtrbl() {
+          this.generatedLabels = this.labels.slice()
+          let indices = []
+
+          for(let i = 0; i < 1000; i++) {
+            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+          }
+
+          this.generatedLabels = this.labels.filter((v, i, a) => {
+            return !indices.includes(i)
+          })
+        },
+
+
+
+
+        //Tabs
+
+        cht() {
+          this.generatedTabs = []
+
+          for(let i = 0; i < 100; i++) {
+            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+          }
+        },
+
+        ctt() {
+          this.generatedTabs = []
+
+          for(let i = 0; i < 1000; i++) {
+            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+          }
+        },
+
+        cttt() {
+          this.generatedTabs = []
+
+          for(let i = 0; i < 10000; i++) {
+            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+          }
+        },
+
+        ut() {
+          this.tabs = this.generatedTabs
+        },
+
+        st() {
+          this.activeTab = (this.activeTab == 0) ? 50 : 0
+        },
+
+        srt() {
+          this.activeTab = Math.floor(Math.random() * this.tabs.length)
+        },
+
+        shrt(beginIndex = 0) {
+          if(beginIndex < 100) {
+            setTimeout(() => {
+              this.activeTab = Math.floor(Math.random() * this.tabs.length)
+              this.shrt(beginIndex + 1)
+            }, 0)
+          }
+        },
+
+        strlrt() {
+          for(let i = 0; i < 10000; i++) {
+            let a = Math.floor(Math.random() * this.tabs.length)
+            let aa = Math.floor(Math.random() * this.tabs[a].data.length)
+            let b = Math.floor(Math.random() * this.tabs.length)
+            let bb = Math.floor(Math.random() * this.tabs[b].data.length)
+
+            let tmp = this.tabs[a].data[aa]
+            this.tabs[a].data[aa] = this.tabs[b].data[bb]
+            this.tabs[b].data[bb] = tmp
+          }
+        },
+
+        shtrlrt() {
+          for(let i = 0; i < 100000; i++) {
+            let a = Math.floor(Math.random() * this.tabs.length)
+            let aa = Math.floor(Math.random() * this.tabs[a].data.length)
+            let b = Math.floor(Math.random() * this.tabs.length)
+            let bb = Math.floor(Math.random() * this.tabs[b].data.length)
+
+            let tmp = this.tabs[a].data[aa]
+            this.tabs[a].data[aa] = this.tabs[b].data[bb]
+            this.tabs[b].data[bb] = tmp
+          }
+        },
+
+
+
+
+        //TextBoxes
+
+        cttb() {
+          this.generatedTextBoxes = []
+
+          for(let i = 0; i < 1000; i++) {
+            this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
+          }
+        },
+
+        ctttb() {
+          this.generatedTextBoxes = []
+
+          for(let i = 0; i < 10000; i++) {
+            this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
+          }
+        },
+
+        utb() {
+          this.textBoxes = this.generatedTextBoxes
+        },
+
+        chthtb() {
+          for(let i = 0; i < 100; i++) {
+            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+          }
+        },
+
+        chtttb() {
+          for(let i = 0; i < 1000; i++) {
+            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+          }
+        },
+
+        chttttb() {
+          for(let i = 0; i < 10000; i++) {
+            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+          }
+        },
+
+        rtb() {
+          this.textBoxes.shift()
+        },
+
+        rrtb() {
+          this.textBoxes.splice(Math.floor(Math.random() * this.textBoxes.length), 1)
+        },
+
+        rhrtb() {
+          this.generatedLabels = this.labels.slice()
+          let indices = []
+
+          for(let i = 0; i < 100; i++) {
+            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+          }
+
+          this.generatedLabels = this.labels.filter((v, i, a) => {
+            return !indices.includes(i)
+          })
+        },
+
+        rtrtb() {
+          this.generatedLabels = this.labels.slice()
+          let indices = []
+
+          for(let i = 0; i < 1000; i++) {
+            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+          }
+
+          this.generatedLabels = this.labels.filter((v, i, a) => {
+            return !indices.includes(i)
+          })
+        },
+
+
+
+        showTab(index) {
+          console.log(index)
+          this.activeTab = index
+        },
+
+        swap(arr, indexA, indexB) {
+          let tmp = arr[indexA]
+          arr[indexA] = arr[indexB]
+          arr[indexB] = tmp
+        },
+
+        generateRandomArray(size) {
+          let result = []
+
+          for(let i = 0; i < size; i++) {
+            result.push(new Label(i, this.generateRandomWords()))
+          }
+
+          return result
+        },
+
+        generateRandomWords() {
+          return colors[Math.floor(Math.random() * colors.length)] + " " + adjectives[Math.floor(Math.random() * adjectives.length)] + " " + nouns[Math.floor(Math.random() * nouns.length)]
+        },
     }
 }
 </script>
@@ -167,3 +696,4 @@ a {
   color: #42b983;
 }
 </style>
+-->
