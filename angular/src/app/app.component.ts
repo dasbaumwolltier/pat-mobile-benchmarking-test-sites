@@ -2244,6 +2244,10 @@ export class AppComponent implements OnInit {
     this.tabs = this.generatedTabs
   }
 
+  sa() {
+    this.activeTab = 0
+  }
+
   st() {
     this.activeTab = (this.activeTab == 0) ? 500 : 0
   }
