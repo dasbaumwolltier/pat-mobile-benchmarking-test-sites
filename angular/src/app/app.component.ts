@@ -2213,14 +2213,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  chttb() {
-    this.generatedTextBoxes = []
-
-    for(let i = 0; i < 100000; i++) {
-      this.generatedTextBoxes.push(new TextBox(i, ""))
-    }
-  }
-
   chthtb() {
     for(let i = 0; i < 100; i++) {
       this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
