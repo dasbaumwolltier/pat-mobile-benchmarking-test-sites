@@ -2252,34 +2252,34 @@ export class AppComponent implements OnInit {
     this.activeTab = Math.floor(Math.random() * this.tabs.length)
   }
 
-  srht(beginIndex = 0) {
+  shrt(beginIndex = 0) {
     if(beginIndex < 100) {
       setTimeout(() => {
         this.activeTab = Math.floor(Math.random() * this.tabs.length)
-        this.srht(beginIndex + 1)
+        this.shrt(beginIndex + 1)
       }, 0)
     }
   }
 
-  srtt(beginIndex = 0) {
+  strt(beginIndex = 0) {
     if(beginIndex < 1000) {
       setTimeout(() => {
         this.activeTab = Math.floor(Math.random() * this.tabs.length)
-        this.srht(beginIndex + 1)
+        this.shrt(beginIndex + 1)
       }, 0)
     }
   }
 
-  srttt(beginIndex = 0) {
+  strtt(beginIndex = 0) {
     if(beginIndex < 1000) {
       setTimeout(() => {
         this.activeTab = Math.floor(Math.random() * this.tabs.length)
-        this.srht(beginIndex + 1)
+        this.shrt(beginIndex + 1)
       }, 0)
     }
   }
 
-  sttrlrt() {
+  strlrt() {
     for(let i = 0; i < 10000; i++) {
       let a = Math.floor(Math.random() * this.tabs.length)
       let aa = Math.floor(Math.random() * this.tabs[a].data.length)
