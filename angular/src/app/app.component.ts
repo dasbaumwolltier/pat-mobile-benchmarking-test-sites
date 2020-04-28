@@ -2174,7 +2174,7 @@ export class AppComponent implements OnInit {
   }
 
   sbl() {
-    this.swap(this.labels, 0, 500)
+    this.swap(this.labels, 0, 50)
   }
 
   srbl() {
@@ -2246,7 +2246,7 @@ export class AppComponent implements OnInit {
   }
 
   st() {
-    this.activeTab = (this.activeTab == 0) ? 500 : 0
+    this.activeTab = (this.activeTab == 0) ? 50 : 0
   }
 
   srt() {
@@ -2364,7 +2364,6 @@ export class AppComponent implements OnInit {
       return !indices.includes(i)
     })
   }
-
 
 
 
