@@ -52,7 +52,7 @@
   <div id="textBoxes">
     <app-textbox v-for="(textbox, index) in textBoxes" :key="textbox.id" v-model="textBoxes[index]"></app-textbox>
   </div>
-  <div>
+  <div id="tabs">
     <app-tabs :tabs="tabs"></app-tabs>
   </div>
 
