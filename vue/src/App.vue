@@ -155,6 +155,7 @@
 
 <script>
 import { Store } from './store';
+import Vue from 'vue'
 var store = new Store;
 
 import { LabelData, TabData, TextBoxData, colors, adjectives, nouns } from './lib'
@@ -412,258 +413,8 @@ export default {
 
         swap(arr, indexA, indexB) {
           let tmp = arr[indexA]
-          arr[indexA] = arr[indexB]
-          arr[indexB] = tmp
-        },
-
-        generateRandomArray(size) {
-          let result = []
-
-          for(let i = 0; i < size; i++) {
-            result.push(new LabelData(i, this.generateRandomWords()))
-          }
-       this.labels = []
-          this.generatedLabels = []
-
-          this.tabs = []
-          this.generatedTabs = []
-
-          this.textBoxes = []
-          this.generatedTabs = []
-        },
-
-        trackById(index, item) {
-          return item.id
-        },
-
-
-
-
-        //Labels
-
-        ctbl() {
-          this.generatedLabels = []
-
-          for(let i = 0; i < 1000; i++) {
-            this.generatedLabels.push(new LabelData(i, this.generateRandomWords()))
-          }
-        },
-
-        cttbl() {
-          this.generatedLabels = []
-
-          for(let i = 0; i < 10000; i++) {
-            this.generatedLabels.push(new LabelData(i, this.generateRandomWords()))
-          }
-        },
-
-        ubl() {
-          this.labels = this.generatedLabels
-        },
-
-        sbl() {
-          this.swap(this.labels, 0, 50)
-        },
-
-        srbl() {
-          this.swap(this.labels, Math.floor(Math.random() * this.labels.length), Math.floor(Math.random() * this.labels.length))
-        },
-
-        strbl() {
-          this.generatedLabels = this.labels.slice()
-
-          for(let i = 0; i < 1000; i++) {
-            this.swap(this.generatedLabels, Math.floor(Math.random() * this.generatedLabels.length), Math.floor(Math.random() * this.generatedLabels.length))
-          }
-        },
-
-        rbl() {
-          this.labels.shift()
-        },
-
-        rrbl() {
-          let index = Math.floor(Math.random() * this.labels.length)
-          this.labels.splice(index, 1)
-          console.log(index)
-        },
-
-        rtrbl() {
-          this.generatedLabels = this.labels.slice()
-          let indices = []
-
-          for(let i = 0; i < 1000; i++) {
-            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
-          }
-
-          this.generatedLabels = this.labels.filter((v, i, a) => {
-            return !indices.includes(i)
-          })
-        },
-
-
-
-
-        //Tabs
-
-        cht() {
-          this.generatedTabs = []
-
-          for(let i = 0; i < 100; i++) {
-            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
-          }
-        },
-
-        ctt() {
-          this.generatedTabs = []
-
-          for(let i = 0; i < 1000; i++) {
-            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
-          }
-        },
-
-        cttt() {
-          this.generatedTabs = []
-
-          for(let i = 0; i < 10000; i++) {
-            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
-          }
-        },
-
-        ut() {
-          this.tabs = this.generatedTabs
-        },
-
-        st() {
-          this.activeTab = (this.activeTab == 0) ? 50 : 0
-        },
-
-        srt() {
-          this.activeTab = Math.floor(Math.random() * this.tabs.length)
-        },
-
-        shrt(beginIndex = 0) {
-          if(beginIndex < 100) {
-            setTimeout(() => {
-              this.activeTab = Math.floor(Math.random() * this.tabs.length)
-              this.shrt(beginIndex + 1)
-            }, 0)
-          }
-        },
-
-        strlrt() {
-          for(let i = 0; i < 10000; i++) {
-            let a = Math.floor(Math.random() * this.tabs.length)
-            let aa = Math.floor(Math.random() * this.tabs[a].data.length)
-            let b = Math.floor(Math.random() * this.tabs.length)
-            let bb = Math.floor(Math.random() * this.tabs[b].data.length)
-
-            let tmp = this.tabs[a].data[aa]
-            this.tabs[a].data[aa] = this.tabs[b].data[bb]
-            this.tabs[b].data[bb] = tmp
-          }
-        },
-
-        shtrlrt() {
-          for(let i = 0; i < 100000; i++) {
-            let a = Math.floor(Math.random() * this.tabs.length)
-            let aa = Math.floor(Math.random() * this.tabs[a].data.length)
-            let b = Math.floor(Math.random() * this.tabs.length)
-            let bb = Math.floor(Math.random() * this.tabs[b].data.length)
-
-            let tmp = this.tabs[a].data[aa]
-            this.tabs[a].data[aa] = this.tabs[b].data[bb]
-            this.tabs[b].data[bb] = tmp
-          }
-        },
-
-
-
-
-        //TextBoxes
-
-        cttb() {
-          this.generatedTextBoxes = []
-
-          for(let i = 0; i < 1000; i++) {
-            this.generatedTextBoxes.push(new TextBoxData(i, this.generateRandomWords()))
-          }
-        },
-
-        ctttb() {
-          this.generatedTextBoxes = []
-
-          for(let i = 0; i < 10000; i++) {
-            this.generatedTextBoxes.push(new TextBoxData(i, this.generateRandomWords()))
-          }
-        },
-
-        utb() {
-          this.textBoxes = this.generatedTextBoxes
-        },
-
-        chthtb() {
-          for(let i = 0; i < 100; i++) {
-            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
-          }
-        },
-
-        chtttb() {
-          for(let i = 0; i < 1000; i++) {
-            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
-          }
-        },
-
-        chttttb() {
-          for(let i = 0; i < 10000; i++) {
-            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
-          }
-        },
-
-        rtb() {
-          this.textBoxes.shift()
-        },
-
-        rrtb() {
-          this.textBoxes.splice(Math.floor(Math.random() * this.textBoxes.length), 1)
-        },
-
-        rhrtb() {
-          this.generatedLabels = this.labels.slice()
-          let indices = []
-
-          for(let i = 0; i < 100; i++) {
-            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
-          }
-
-          this.generatedLabels = this.labels.filter((v, i, a) => {
-            return !indices.includes(i)
-          })
-        },
-
-        rtrtb() {
-          this.generatedLabels = this.labels.slice()
-          let indices = []
-
-          for(let i = 0; i < 1000; i++) {
-            indices.push(Math.floor(Math.random() * this.generatedLabels.length))
-          }
-
-          this.generatedLabels = this.labels.filter((v, i, a) => {
-            return !indices.includes(i)
-          })
-        },
-
-
-
-        showTab(index) {
-          console.log(index)
-          this.activeTab = index
-        },
-
-        swap(arr, indexA, indexB) {
-          let tmp = arr[indexA]
-          arr[indexA] = arr[indexB]
-          arr[indexB] = tmp
+          Vue.set(arr, indexA, arr[indexB])
+          Vue.set(arr, indexB, tmp)
         },
 
         generateRandomArray(size) {
@@ -675,10 +426,12 @@ export default {
 
           return result
         },
-
         generateRandomWords() {
           return colors[Math.floor(Math.random() * colors.length)] + " " + adjectives[Math.floor(Math.random() * adjectives.length)] + " " + nouns[Math.floor(Math.random() * nouns.length)]
         },
+        trackById(index, item) {
+          return item.id
+        }
     }
 }
 </script>
