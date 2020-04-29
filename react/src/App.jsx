@@ -5,12 +5,12 @@ import { LabelData, TabData, TextBoxData, adjectives, colors, nouns } from './li
 
 class Label extends Component {
   render() {
-    const tabId = this.props.tabId
-    const labelId = this.props.labelId
+    let tabId = this.props.tabId
+    let labelId = this.props.labelId
 
     return (
-      <div className="label">
-        {(tabId ? <> {tabId} - </> : <></>)}  {labelId} - {this.props.children}<slot></slot>
+      <div id={this.props.id} className="label">
+        {((tabId === 0 || tabId) ? <> {tabId} - </> : <></>)}  {labelId} - {this.props.children}<slot></slot>
       </div>
     )
   }
@@ -67,7 +67,7 @@ class TabContent extends Component {
       return (
         <>
         {
-          labelData.map((v) => <Label id={"tbl-" + v.tabId + "-" + v.id} tabId={v.tabId} labelId={v.labelId}>{v.name}</Label>)
+          labelData.map((v) => <Label id={"tbl-" + v.tabId + "-" + v.id} tabId={v.tabId} labelId={v.id}>{v.name}</Label>)
         }
         </>
       )
