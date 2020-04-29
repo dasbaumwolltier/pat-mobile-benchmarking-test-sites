@@ -1,2312 +1,471 @@
 import React, { Component } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './App.css';
 
-function random(max) {
-  return Math.round(Math.random() * 1000) % max;
-}
+import { LabelData, TabData, TextBoxData, adjectives, colors, nouns } from './lib'
 
-const colors = [
-  "aliceblue",
-  "antiquewhite",
-  "aqua",
-  "aquamarine",
-  "azure",
-  "beige",
-  "bisque",
-  "black",
-  "blanchedalmond",
-  "blue",
-  "blueviolet",
-  "brown",
-  "burlywood",
-  "cadetblue",
-  "chartreuse",
-  "chocolate",
-  "coral",
-  "cornflowerblue",
-  "cornsilk",
-  "crimson",
-  "cyan",
-  "darkblue",
-  "darkcyan",
-  "darkgoldenrod",
-  "darkgray",
-  "darkgreen",
-  "darkgrey",
-  "darkkhaki",
-  "darkmagenta",
-  "darkolivegreen",
-  "darkorange",
-  "darkorchid",
-  "darkred",
-  "darksalmon",
-  "darkseagreen",
-  "darkslateblue",
-  "darkslategray",
-  "darkslategrey",
-  "darkturquoise",
-  "darkviolet",
-  "deeppink",
-  "deepskyblue",
-  "dimgray",
-  "dimgrey",
-  "dodgerblue",
-  "firebrick",
-  "floralwhite",
-  "forestgreen",
-  "fuchsia",
-  "gainsboro",
-  "ghostwhite",
-  "goldenrod",
-  "gold",
-  "gray",
-  "green",
-  "greenyellow",
-  "grey",
-  "honeydew",
-  "hotpink",
-  "indianred",
-  "indigo",
-  "ivory",
-  "khaki",
-  "lavenderblush",
-  "lavender",
-  "lawngreen",
-  "lemonchiffon",
-  "lightblue",
-  "lightcoral",
-  "lightcyan",
-  "lightgoldenrodyellow",
-  "lightgray",
-  "lightgreen",
-  "lightgrey",
-  "lightpink",
-  "lightsalmon",
-  "lightseagreen",
-  "lightskyblue",
-  "lightslategray",
-  "lightslategrey",
-  "lightsteelblue",
-  "lightyellow",
-  "lime",
-  "limegreen",
-  "linen",
-  "magenta",
-  "maroon",
-  "mediumaquamarine",
-  "mediumblue",
-  "mediumorchid",
-  "mediumpurple",
-  "mediumseagreen",
-  "mediumslateblue",
-  "mediumspringgreen",
-  "mediumturquoise",
-  "mediumvioletred",
-  "midnightblue",
-  "mintcream",
-  "mistyrose",
-  "moccasin",
-  "navajowhite",
-  "navy",
-  "oldlace",
-  "olive",
-  "olivedrab",
-  "orange",
-  "orangered",
-  "orchid",
-  "palegoldenrod",
-  "palegreen",
-  "paleturquoise",
-  "palevioletred",
-  "papayawhip",
-  "peachpuff",
-  "peru",
-  "pink",
-  "plum",
-  "powderblue",
-  "purple",
-  "rebeccapurple",
-  "red",
-  "rosybrown",
-  "royalblue",
-  "saddlebrown",
-  "salmon",
-  "sandybrown",
-  "seagreen",
-  "seashell",
-  "sienna",
-  "silver",
-  "skyblue",
-  "slateblue",
-  "slategray",
-  "slategrey",
-  "snow",
-  "springgreen",
-  "steelblue",
-  "tan",
-  "teal",
-  "thistle",
-  "tomato",
-  "turquoise",
-  "violet",
-  "wheat",
-  "white",
-  "whitesmoke",
-  "yellow",
-  "yellowgreen"
-]
-
-const adjectives = [
-  "Aristotelian",
-  "Arthurian",
-  "Bohemian",
-  "Brethren",
-  "Mosaic",
-  "Oceanic",
-  "Proctor",
-  "Terran",
-  "Tudor",
-  "abroad",
-  "absorbing",
-  "abstract",
-  "academic",
-  "accelerated",
-  "accented",
-  "accountant",
-  "acquainted",
-  "acute",
-  "addicting",
-  "addictive",
-  "adjustable",
-  "admired",
-  "adult",
-  "adverse",
-  "advised",
-  "aerosol",
-  "afraid",
-  "aggravated",
-  "aggressive",
-  "agreeable",
-  "alienate",
-  "aligned",
-  "all-round",
-  "alleged",
-  "almond",
-  "alright",
-  "altruistic",
-  "ambient",
-  "ambivalent",
-  "amiable",
-  "amino",
-  "amorphous",
-  "amused",
-  "anatomical",
-  "ancestral",
-  "angelic",
-  "angrier",
-  "answerable",
-  "antiquarian",
-  "antiretroviral",
-  "appellate",
-  "applicable",
-  "apportioned",
-  "approachable",
-  "appropriated",
-  "archer",
-  "aroused",
-  "arrested",
-  "assertive",
-  "assigned",
-  "athletic",
-  "atrocious",
-  "attained",
-  "authoritarian",
-  "autobiographical",
-  "avaricious",
-  "avocado",
-  "awake",
-  "awsome",
-  "backstage",
-  "backwoods",
-  "balding",
-  "bandaged",
-  "banded",
-  "banned",
-  "barreled",
-  "battle",
-  "beaten",
-  "begotten",
-  "beguiled",
-  "bellied",
-  "belted",
-  "beneficent",
-  "besieged",
-  "betting",
-  "big-money",
-  "biggest",
-  "biochemical",
-  "bipolar",
-  "blackened",
-  "blame",
-  "blessed",
-  "blindfolded",
-  "bloat",
-  "blocked",
-  "blooded",
-  "blue-collar",
-  "blushing",
-  "boastful",
-  "bolder",
-  "bolstered",
-  "bonnie",
-  "bored",
-  "boundary",
-  "bounded",
-  "bounding",
-  "branched",
-  "brawling",
-  "brazen",
-  "breeding",
-  "bridged",
-  "brimming",
-  "brimstone",
-  "broadest",
-  "broiled",
-  "broker",
-  "bronze",
-  "bruising",
-  "buffy",
-  "bullied",
-  "bungling",
-  "burial",
-  "buttery",
-  "candied",
-  "canonical",
-  "cantankerous",
-  "cardinal",
-  "carefree",
-  "caretaker",
-  "casual",
-  "cathartic",
-  "causal",
-  "chapel",
-  "characterized",
-  "charcoal",
-  "cheeky",
-  "cherished",
-  "chipotle",
-  "chirping",
-  "chivalrous",
-  "circumstantial",
-  "civic",
-  "civil",
-  "civilised",
-  "clanking",
-  "clapping",
-  "claptrap",
-  "classless",
-  "cleansed",
-  "cleric",
-  "cloistered",
-  "codified",
-  "colloquial",
-  "colour",
-  "combat",
-  "combined",
-  "comely",
-  "commissioned",
-  "commonplace",
-  "commuter",
-  "commuting",
-  "comparable",
-  "complementary",
-  "compromising",
-  "conceding",
-  "concentrated",
-  "conceptual",
-  "conditioned",
-  "confederate",
-  "confident",
-  "confidential",
-  "confining",
-  "confuse",
-  "congressional",
-  "consequential",
-  "conservative",
-  "constituent",
-  "contaminated",
-  "contemporaneous",
-  "contraceptive",
-  "convertible",
-  "convex",
-  "cooked",
-  "coronary",
-  "corporatist",
-  "correlated",
-  "corroborated",
-  "cosmic",
-  "cover",
-  "crash",
-  "crypto",
-  "culminate",
-  "cushioned",
-  "dandy",
-  "dashing",
-  "dazzled",
-  "decreased",
-  "decrepit",
-  "dedicated",
-  "defaced",
-  "defective",
-  "defenseless",
-  "deluded",
-  "deodorant",
-  "departed",
-  "depress",
-  "designing",
-  "despairing",
-  "destitute",
-  "detective",
-  "determined",
-  "devastating",
-  "deviant",
-  "devilish",
-  "devoted",
-  "diagonal",
-  "dictated",
-  "didactic",
-  "differentiated",
-  "diffused",
-  "dirtier",
-  "disabling",
-  "disconnected",
-  "discovered",
-  "disdainful",
-  "diseased",
-  "disfigured",
-  "disheartened",
-  "disheveled",
-  "disillusioned",
-  "disparate",
-  "dissident",
-  "doable",
-  "doctrinal",
-  "doing",
-  "dotted",
-  "double-blind",
-  "downbeat",
-  "dozen",
-  "draining",
-  "draught",
-  "dread",
-  "dried",
-  "dropped",
-  "dulled",
-  "duplicate",
-  "eaten",
-  "echoing",
-  "economical",
-  "elaborated",
-  "elastic",
-  "elective",
-  "electoral",
-  "elven",
-  "embryo",
-  "emerald",
-  "emergency",
-  "emissary",
-  "emotional",
-  "employed",
-  "enamel",
-  "encased",
-  "encrusted",
-  "endangered",
-  "engraved",
-  "engrossing",
-  "enlarged",
-  "enlisted",
-  "enlivened",
-  "ensconced",
-  "entangled",
-  "enthralling",
-  "entire",
-  "envious",
-  "eradicated",
-  "eroded",
-  "esoteric",
-  "essential",
-  "evaporated",
-  "ever-present",
-  "evergreen",
-  "everlasting",
-  "exacting",
-  "exasperated",
-  "excess",
-  "exciting",
-  "executable",
-  "existent",
-  "exonerated",
-  "exorbitant",
-  "exponential",
-  "export",
-  "extraordinary",
-  "exultant",
-  "exulting",
-  "facsimile",
-  "fading",
-  "fainter",
-  "faith-based",
-  "fallacious",
-  "faltering",
-  "famous",
-  "fancier",
-  "fast-growing",
-  "fated",
-  "favourable",
-  "fearless",
-  "feathered",
-  "fellow",
-  "fermented",
-  "ferocious",
-  "fiddling",
-  "filling",
-  "firmer",
-  "fitted",
-  "flammable",
-  "flawed",
-  "fledgling",
-  "fleshy",
-  "flexible",
-  "flickering",
-  "floral",
-  "flowering",
-  "flowing",
-  "foggy",
-  "folic",
-  "foolhardy",
-  "foolish",
-  "footy",
-  "forehand",
-  "forked",
-  "formative",
-  "formulaic",
-  "foul-mouthed",
-  "fractional",
-  "fragrant",
-  "fraudulent",
-  "freakish",
-  "freckled",
-  "freelance",
-  "freight",
-  "fresh",
-  "fretted",
-  "frugal",
-  "fulfilling",
-  "fuming",
-  "funded",
-  "funny",
-  "garbled",
-  "gathered",
-  "geologic",
-  "geometric",
-  "gibberish",
-  "gilded",
-  "ginger",
-  "glare",
-  "glaring",
-  "gleaming",
-  "glorified",
-  "glorious",
-  "goalless",
-  "gold-plated",
-  "goody",
-  "grammatical",
-  "grande",
-  "grateful",
-  "gratuitous",
-  "graven",
-  "greener",
-  "grinding",
-  "grizzly",
-  "groaning",
-  "grudging",
-  "guaranteed",
-  "gusty",
-  "half-breed",
-  "hand-held",
-  "handheld",
-  "hands-off",
-  "hard-pressed",
-  "harlot",
-  "healing",
-  "healthier",
-  "healthiest",
-  "heart",
-  "heart-shaped",
-  "heathen",
-  "hedonistic",
-  "heralded",
-  "herbal",
-  "high-density",
-  "high-performance",
-  "high-res",
-  "high-yield",
-  "hissy",
-  "hitless",
-  "holiness",
-  "homesick",
-  "honorable",
-  "hooded",
-  "hopeless",
-  "horrendous",
-  "horrible",
-  "hot-button",
-  "huddled",
-  "human",
-  "humbling",
-  "humid",
-  "humiliating",
-  "hypnotized",
-  "idealistic",
-  "idiosyncratic",
-  "ignited",
-  "illustrated",
-  "illustrative",
-  "imitated",
-  "immense",
-  "immersive",
-  "immigrant",
-  "immoral",
-  "impassive",
-  "impressionable",
-  "improbable",
-  "impulsive",
-  "in-between",
-  "in-flight",
-  "inattentive",
-  "inbound",
-  "inbounds",
-  "incalculable",
-  "incomprehensible",
-  "indefatigable",
-  "indigo",
-  "indiscriminate",
-  "indomitable",
-  "inert",
-  "inflate",
-  "inform",
-  "inheriting",
-  "injured",
-  "injurious",
-  "inking",
-  "inoffensive",
-  "insane",
-  "insensible",
-  "insidious",
-  "insincere",
-  "insistent",
-  "insolent",
-  "insufferable",
-  "intemperate",
-  "interdependent",
-  "interesting",
-  "interfering",
-  "intern",
-  "interpreted",
-  "intersecting",
-  "intolerable",
-  "intolerant",
-  "intuitive",
-  "irresolute",
-  "irritate",
-  "jealous",
-  "jerking",
-  "joining",
-  "joint",
-  "journalistic",
-  "joyful",
-  "keyed",
-  "knowing",
-  "lacklustre",
-  "laden",
-  "lagging",
-  "lamented",
-  "laughable",
-  "layered",
-  "leather",
-  "leathern",
-  "leery",
-  "left-footed",
-  "legible",
-  "leisure",
-  "lessening",
-  "liberating",
-  "life-size",
-  "lifted",
-  "lightest",
-  "limitless",
-  "listening",
-  "literary",
-  "liver",
-  "livid",
-  "lobster",
-  "locked",
-  "long-held",
-  "long-lasting",
-  "long-running",
-  "long-suffering",
-  "loudest",
-  "loveliest",
-  "low-budget",
-  "low-carb",
-  "lowering",
-  "lucid",
-  "luckless",
-  "lusty",
-  "luxurious",
-  "magazine",
-  "maniac",
-  "manmade",
-  "maroon",
-  "mastered",
-  "mated",
-  "material",
-  "materialistic",
-  "meaningful",
-  "measuring",
-  "mediaeval",
-  "medical",
-  "meditated",
-  "medley",
-  "melodic",
-  "memorable",
-  "memorial",
-  "metabolic",
-  "metallic",
-  "metallurgical",
-  "metering",
-  "midair",
-  "midterm",
-  "midway",
-  "mighty",
-  "migrating",
-  "mind-blowing",
-  "mind-boggling",
-  "minor",
-  "mirrored",
-  "misguided",
-  "misshapen",
-  "mitigated",
-  "mixed",
-  "modernized",
-  "molecular",
-  "monarch",
-  "monastic",
-  "morbid",
-  "motley",
-  "motorized",
-  "mounted",
-  "multi-million",
-  "multidisciplinary",
-  "muscled",
-  "muscular",
-  "muted",
-  "mysterious",
-  "mythic",
-  "nail-biting",
-  "natural",
-  "nauseous",
-  "negative",
-  "networked",
-  "neurological",
-  "neutered",
-  "newest",
-  "night",
-  "nitrous",
-  "no-fly",
-  "noncommercial",
-  "nonsense",
-  "north",
-  "nuanced",
-  "occurring",
-  "offensive",
-  "oldest",
-  "oncoming",
-  "one-eyed",
-  "one-year",
-  "onstage",
-  "onward",
-  "opaque",
-  "open-ended",
-  "operating",
-  "opportunist",
-  "opposing",
-  "opt-in",
-  "ordinate",
-  "outdone",
-  "outlaw",
-  "outsized",
-  "overboard",
-  "overheated",
-  "oversize",
-  "overworked",
-  "oyster",
-  "paced",
-  "panting",
-  "paralyzed",
-  "paramount",
-  "parental",
-  "parted",
-  "partisan",
-  "passive",
-  "pastel",
-  "patriot",
-  "peacekeeping",
-  "pedestrian",
-  "peevish",
-  "penal",
-  "penned",
-  "pensive",
-  "perceptual",
-  "perky",
-  "permissible",
-  "pernicious",
-  "perpetuate",
-  "perplexed",
-  "pervasive",
-  "petrochemical",
-  "philosophical",
-  "picturesque",
-  "pillaged",
-  "piped",
-  "piquant",
-  "pitching",
-  "plausible",
-  "pliable",
-  "plumb",
-  "politician",
-  "polygamous",
-  "poorest",
-  "portmanteau",
-  "posed",
-  "positive",
-  "possible",
-  "postpartum",
-  "prank",
-  "pre-emptive",
-  "precocious",
-  "predicted",
-  "premium",
-  "preparatory",
-  "prerequisite",
-  "prescient",
-  "preserved",
-  "presidential",
-  "pressed",
-  "pressurized",
-  "presumed",
-  "prewar",
-  "priced",
-  "pricier",
-  "primal",
-  "primer",
-  "primetime",
-  "printed",
-  "private",
-  "problem",
-  "procedural",
-  "process",
-  "prodigious",
-  "professional",
-  "programmed",
-  "progressive",
-  "prolific",
-  "promising",
-  "promulgated",
-  "pronged",
-  "proportionate",
-  "protracted",
-  "pulled",
-  "pulsed",
-  "purgatory",
-  "quick",
-  "rapid-fire",
-  "raunchy",
-  "razed",
-  "reactive",
-  "readable",
-  "realizing",
-  "recognised",
-  "recovering",
-  "recurrent",
-  "recycled",
-  "redeemable",
-  "reflecting",
-  "regal",
-  "registering",
-  "reliable",
-  "reminiscent",
-  "remorseless",
-  "removable",
-  "renewable",
-  "repeating",
-  "repellent",
-  "reserve",
-  "resigned",
-  "respectful",
-  "rested",
-  "restrict",
-  "resultant",
-  "retaliatory",
-  "retiring",
-  "revelatory",
-  "reverend",
-  "reversing",
-  "revolving",
-  "ridiculous",
-  "right-hand",
-  "ringed",
-  "risque",
-  "robust",
-  "roomful",
-  "rotating",
-  "roused",
-  "rubber",
-  "run-down",
-  "running",
-  "runtime",
-  "rustling",
-  "safest",
-  "salient",
-  "sanctioned",
-  "saute",
-  "saved",
-  "scandalized",
-  "scarlet",
-  "scattering",
-  "sceptical",
-  "scheming",
-  "scoundrel",
-  "scratched",
-  "scratchy",
-  "scrolled",
-  "seated",
-  "second-best",
-  "segregated",
-  "self-taught",
-  "semiautomatic",
-  "senior",
-  "sensed",
-  "sentient",
-  "sexier",
-  "shadowy",
-  "shaken",
-  "shaker",
-  "shameless",
-  "shaped",
-  "shiny",
-  "shipped",
-  "shivering",
-  "shoestring",
-  "short",
-  "short-lived",
-  "signed",
-  "simplest",
-  "simplistic",
-  "sizable",
-  "skeleton",
-  "skinny",
-  "skirting",
-  "skyrocketed",
-  "slamming",
-  "slanting",
-  "slapstick",
-  "sleek",
-  "sleepless",
-  "sleepy",
-  "slender",
-  "slimmer",
-  "smacking",
-  "smokeless",
-  "smothered",
-  "smouldering",
-  "snuff",
-  "socialized",
-  "solid-state",
-  "sometime",
-  "sought",
-  "spanking",
-  "sparing",
-  "spattered",
-  "specialized",
-  "specific",
-  "speedy",
-  "spherical",
-  "spiky",
-  "spineless",
-  "sprung",
-  "squint",
-  "stainless",
-  "standing",
-  "starlight",
-  "startled",
-  "stately",
-  "statewide",
-  "stereoscopic",
-  "sticky",
-  "stimulant",
-  "stinky",
-  "stoked",
-  "stolen",
-  "storied",
-  "strained",
-  "strapping",
-  "strengthened",
-  "stubborn",
-  "stylized",
-  "suave",
-  "subjective",
-  "subjugated",
-  "subordinate",
-  "succeeding",
-  "suffering",
-  "summary",
-  "sunset",
-  "sunshine",
-  "supernatural",
-  "supervisory",
-  "supply-side",
-  "surrogate",
-  "suspended",
-  "suspenseful",
-  "swarthy",
-  "sweating",
-  "sweeping",
-  "swinging",
-  "swooning",
-  "sympathize",
-  "synchronized",
-  "synonymous",
-  "synthetic",
-  "tailed",
-  "tallest",
-  "tangible",
-  "tanked",
-  "tarry",
-  "technical",
-  "tectonic",
-  "telepathic",
-  "tenderest",
-  "territorial",
-  "testimonial",
-  "theistic",
-  "thicker",
-  "threatening",
-  "tight-lipped",
-  "timed",
-  "timely",
-  "timid",
-  "torrent",
-  "totalled",
-  "tougher",
-  "traditional",
-  "transformed",
-  "trapped",
-  "traveled",
-  "traverse",
-  "treated",
-  "trial",
-  "trunk",
-  "trusting",
-  "trying",
-  "twisted",
-  "two-lane",
-  "tyrannical",
-  "unaided",
-  "unassisted",
-  "unassuming",
-  "unattractive",
-  "uncapped",
-  "uncomfortable",
-  "uncontrolled",
-  "uncooked",
-  "uncooperative",
-  "underground",
-  "undersea",
-  "undisturbed",
-  "unearthly",
-  "uneasy",
-  "unequal",
-  "unfazed",
-  "unfinished",
-  "unforeseen",
-  "unforgivable",
-  "unidentified",
-  "unimaginative",
-  "uninspired",
-  "unintended",
-  "uninvited",
-  "universal",
-  "unmasked",
-  "unorthodox",
-  "unparalleled",
-  "unpleasant",
-  "unprincipled",
-  "unread",
-  "unreasonable",
-  "unregulated",
-  "unreliable",
-  "unremitting",
-  "unsafe",
-  "unsanitary",
-  "unsealed",
-  "unsuccessful",
-  "unsupervised",
-  "untimely",
-  "unwary",
-  "unwrapped",
-  "uppity",
-  "upstart",
-  "useless",
-  "utter",
-  "valiant",
-  "valid",
-  "valued",
-  "vanilla",
-  "vaulting",
-  "vaunted",
-  "veering",
-  "vegetative",
-  "vented",
-  "verbal",
-  "verifying",
-  "veritable",
-  "versed",
-  "vinyl",
-  "virgin",
-  "visceral",
-  "visual",
-  "voluptuous",
-  "walk-on",
-  "wanton",
-  "warlike",
-  "washed",
-  "waterproof",
-  "waved",
-  "weakest",
-  "well-bred",
-  "well-chosen",
-  "well-informed",
-  "wetting",
-  "wheeled",
-  "whirlwind",
-  "widen",
-  "widening",
-  "willful",
-  "willing",
-  "winnable",
-  "winningest",
-  "wireless",
-  "wistful",
-  "woeful",
-  "wooded",
-  "woodland",
-  "wordless",
-  "workable",
-  "worldly",
-  "worldwide",
-  "worst-case",
-  "worsted",
-  "worthless"
-]
-
-const nouns = [
-  "Armour",
-  "Barrymore",
-  "Cabot",
-  "Catholicism",
-  "Chihuahua",
-  "Christianity",
-  "Easter",
-  "Frenchman",
-  "Lowry",
-  "Mayer",
-  "Orientalism",
-  "Pharaoh",
-  "Pueblo",
-  "Pullman",
-  "Rodeo",
-  "Saturday",
-  "Sister",
-  "Snead",
-  "Syrah",
-  "Tuesday",
-  "Woodward",
-  "abbey",
-  "absence",
-  "absorption",
-  "abstinence",
-  "absurdity",
-  "abundance",
-  "acceptance",
-  "accessibility",
-  "accommodation",
-  "accomplice",
-  "accountability",
-  "accounting",
-  "accreditation",
-  "accuracy",
-  "acquiescence",
-  "acreage",
-  "actress",
-  "actuality",
-  "adage",
-  "adaptation",
-  "adherence",
-  "adjustment",
-  "adoption",
-  "adultery",
-  "advancement",
-  "advert",
-  "advertisement",
-  "advertising",
-  "advice",
-  "aesthetics",
-  "affinity",
-  "aggression",
-  "agriculture",
-  "aircraft",
-  "airtime",
-  "allegation",
-  "allegiance",
-  "allegory",
-  "allergy",
-  "allies",
-  "alligator",
-  "allocation",
-  "allotment",
-  "altercation",
-  "ambulance",
-  "ammonia",
-  "anatomy",
-  "anemia",
-  "ankle",
-  "announcement",
-  "annoyance",
-  "annuity",
-  "anomaly",
-  "anthropology",
-  "anxiety",
-  "apartheid",
-  "apologise",
-  "apostle",
-  "apparatus",
-  "appeasement",
-  "appellation",
-  "appendix",
-  "applause",
-  "appointment",
-  "appraisal",
-  "archery",
-  "archipelago",
-  "architecture",
-  "ardor",
-  "arrears",
-  "arrow",
-  "artisan",
-  "artistry",
-  "ascent",
-  "assembly",
-  "assignment",
-  "association",
-  "asthma",
-  "atheism",
-  "attacker",
-  "attraction",
-  "attractiveness",
-  "auspices",
-  "authority",
-  "avarice",
-  "aversion",
-  "aviation",
-  "babbling",
-  "backlash",
-  "baker",
-  "ballet",
-  "balls",
-  "banjo",
-  "baron",
-  "barrier",
-  "barrister",
-  "bases",
-  "basin",
-  "basis",
-  "battery",
-  "battling",
-  "bedtime",
-  "beginner",
-  "begun",
-  "bending",
-  "bicycle",
-  "billing",
-  "bingo",
-  "biography",
-  "biology",
-  "birthplace",
-  "blackberry",
-  "blather",
-  "blossom",
-  "boardroom",
-  "boasting",
-  "bodyguard",
-  "boldness",
-  "bomber",
-  "bondage",
-  "bonding",
-  "bones",
-  "bonus",
-  "bookmark",
-  "boomer",
-  "booty",
-  "bounds",
-  "bowling",
-  "brainstorming",
-  "breadth",
-  "breaker",
-  "brewer",
-  "brightness",
-  "broccoli",
-  "broth",
-  "brotherhood",
-  "browsing",
-  "brunch",
-  "brunt",
-  "building",
-  "bullion",
-  "bureaucracy",
-  "burglary",
-  "buyout",
-  "by-election",
-  "cabal",
-  "cabbage",
-  "calamity",
-  "campaign",
-  "canonization",
-  "captaincy",
-  "carcass",
-  "carrier",
-  "cartridge",
-  "cassette",
-  "catfish",
-  "caught",
-  "celebrity",
-  "cemetery",
-  "certainty",
-  "certification",
-  "charade",
-  "chasm",
-  "check-in",
-  "cheerleader",
-  "cheesecake",
-  "chemotherapy",
-  "chili",
-  "china",
-  "chivalry",
-  "cholera",
-  "cilantro",
-  "circus",
-  "civilisation",
-  "civility",
-  "clearance",
-  "clearing",
-  "clerk",
-  "climber",
-  "closeness",
-  "clothing",
-  "clutches",
-  "coaster",
-  "coconut",
-  "coding",
-  "collaborator",
-  "colleague",
-  "college",
-  "collision",
-  "colors",
-  "combustion",
-  "comedian",
-  "comer",
-  "commander",
-  "commemoration",
-  "commenter",
-  "commissioner",
-  "commune",
-  "competition",
-  "completeness",
-  "complexity",
-  "computing",
-  "comrade",
-  "concur",
-  "condominium",
-  "conduit",
-  "confidant",
-  "configuration",
-  "confiscation",
-  "conflagration",
-  "conflict",
-  "consist",
-  "consistency",
-  "consolidation",
-  "conspiracy",
-  "constable",
-  "consul",
-  "consultancy",
-  "contentment",
-  "contents",
-  "contractor",
-  "conversation",
-  "cornerstone",
-  "corpus",
-  "correlation",
-  "councilman",
-  "counselor",
-  "countdown",
-  "countryman",
-  "coverage",
-  "covering",
-  "coyote",
-  "cracker",
-  "creator",
-  "criminality",
-  "crocodile",
-  "cropping",
-  "cross-examination",
-  "crossover",
-  "crossroads",
-  "culprit",
-  "cumin",
-  "curator",
-  "curfew",
-  "cursor",
-  "custard",
-  "cutter",
-  "cyclist",
-  "cyclone",
-  "cylinder",
-  "cynicism",
-  "daddy",
-  "damsel",
-  "darkness",
-  "dawning",
-  "daybreak",
-  "dealing",
-  "dedication",
-  "deduction",
-  "defection",
-  "deference",
-  "deficiency",
-  "definition",
-  "deflation",
-  "degeneration",
-  "delegation",
-  "delicacy",
-  "delirium",
-  "deliverance",
-  "demeanor",
-  "demon",
-  "demonstration",
-  "denomination",
-  "dentist",
-  "departure",
-  "depletion",
-  "depression",
-  "designation",
-  "despotism",
-  "detention",
-  "developer",
-  "devolution",
-  "dexterity",
-  "diagnosis",
-  "dialect",
-  "differentiation",
-  "digger",
-  "digress",
-  "dioxide",
-  "diploma",
-  "disability",
-  "disarmament",
-  "discord",
-  "discovery",
-  "dishonesty",
-  "dismissal",
-  "disobedience",
-  "dispatcher",
-  "disservice",
-  "distribution",
-  "distributor",
-  "diver",
-  "diversity",
-  "docking",
-  "dollar",
-  "dominance",
-  "domination",
-  "dominion",
-  "donkey",
-  "doorstep",
-  "doorway",
-  "dossier",
-  "downside",
-  "drafting",
-  "drank",
-  "drilling",
-  "driver",
-  "drumming",
-  "drunkenness",
-  "duchess",
-  "ducking",
-  "dugout",
-  "dumps",
-  "dwelling",
-  "dynamics",
-  "eagerness",
-  "earnestness",
-  "earnings",
-  "eater",
-  "editor",
-  "effectiveness",
-  "electricity",
-  "elements",
-  "eloquence",
-  "emancipation",
-  "embodiment",
-  "embroidery",
-  "emperor",
-  "employment",
-  "encampment",
-  "enclosure",
-  "encouragement",
-  "endangerment",
-  "enlightenment",
-  "enthusiasm",
-  "environment",
-  "environs",
-  "envoy",
-  "epilepsy",
-  "equation",
-  "equator",
-  "error",
-  "espionage",
-  "estimation",
-  "evacuation",
-  "exaggeration",
-  "examination",
-  "exclamation",
-  "expediency",
-  "exploitation",
-  "extinction",
-  "eyewitness",
-  "falls",
-  "fascism",
-  "fastball",
-  "feces",
-  "feedback",
-  "ferocity",
-  "fertilization",
-  "fetish",
-  "finale",
-  "firing",
-  "fixing",
-  "flashing",
-  "flask",
-  "flora",
-  "fluke",
-  "folklore",
-  "follower",
-  "foothold",
-  "footing",
-  "forefinger",
-  "forefront",
-  "forgiveness",
-  "formality",
-  "formation",
-  "formula",
-  "foyer",
-  "fragmentation",
-  "framework",
-  "fraud",
-  "freestyle",
-  "frequency",
-  "friendliness",
-  "fries",
-  "frigate",
-  "fulfillment",
-  "function",
-  "functionality",
-  "fundraiser",
-  "fusion",
-  "futility",
-  "gallantry",
-  "gallery",
-  "genesis",
-  "genitals",
-  "girlfriend",
-  "glamour",
-  "glitter",
-  "glucose",
-  "google",
-  "grandeur",
-  "grappling",
-  "greens",
-  "gridlock",
-  "grocer",
-  "groundwork",
-  "grouping",
-  "gunman",
-  "gusto",
-  "habitation",
-  "hacker",
-  "hallway",
-  "hamburger",
-  "hammock",
-  "handling",
-  "hands",
-  "handshake",
-  "happiness",
-  "hardship",
-  "headcount",
-  "header",
-  "headquarters",
-  "heads",
-  "headset",
-  "hearth",
-  "hearts",
-  "heath",
-  "hegemony",
-  "height",
-  "hello",
-  "helper",
-  "helping",
-  "helplessness",
-  "hierarchy",
-  "hoarding",
-  "hockey",
-  "homeland",
-  "homer",
-  "honesty",
-  "horror",
-  "horseman",
-  "hostility",
-  "housing",
-  "humility",
-  "hurricane",
-  "iceberg",
-  "ignition",
-  "illness",
-  "illustration",
-  "illustrator",
-  "immunity",
-  "immunization",
-  "imperialism",
-  "imprisonment",
-  "inaccuracy",
-  "inaction",
-  "inactivity",
-  "inauguration",
-  "indecency",
-  "indicator",
-  "inevitability",
-  "infamy",
-  "infiltration",
-  "influx",
-  "iniquity",
-  "innocence",
-  "innovation",
-  "insanity",
-  "inspiration",
-  "instruction",
-  "instructor",
-  "insurer",
-  "interact",
-  "intercession",
-  "intercourse",
-  "intermission",
-  "interpretation",
-  "intersection",
-  "interval",
-  "intolerance",
-  "intruder",
-  "invasion",
-  "investment",
-  "involvement",
-  "irrigation",
-  "iteration",
-  "jenny",
-  "jogging",
-  "jones",
-  "joseph",
-  "juggernaut",
-  "juncture",
-  "jurisprudence",
-  "juror",
-  "kangaroo",
-  "kingdom",
-  "knocking",
-  "laborer",
-  "larceny",
-  "laurels",
-  "layout",
-  "leadership",
-  "leasing",
-  "legislation",
-  "leopard",
-  "liberation",
-  "licence",
-  "lifeblood",
-  "lifeline",
-  "ligament",
-  "lighting",
-  "likeness",
-  "line-up",
-  "lineage",
-  "liner",
-  "lineup",
-  "liquidation",
-  "listener",
-  "literature",
-  "litigation",
-  "litre",
-  "loathing",
-  "locality",
-  "lodging",
-  "logic",
-  "longevity",
-  "lookout",
-  "lordship",
-  "lustre",
-  "ma'am",
-  "machinery",
-  "madness",
-  "magnificence",
-  "mahogany",
-  "mailing",
-  "mainframe",
-  "maintenance",
-  "majority",
-  "manga",
-  "mango",
-  "manifesto",
-  "mantra",
-  "manufacturer",
-  "maple",
-  "martin",
-  "martyrdom",
-  "mathematician",
-  "matrix",
-  "matron",
-  "mayhem",
-  "mayor",
-  "means",
-  "meantime",
-  "measurement",
-  "mechanics",
-  "mediator",
-  "metaphysics",
-  "method",
-  "metre",
-  "miner",
-  "mirth",
-  "misconception",
-  "misery",
-  "mishap",
-  "misunderstanding",
-  "mobility",
-  "molasses",
-  "momentum",
-  "monarchy",
-  "monument",
-  "morale",
-  "mortality",
-  "motto",
-  "mouthful",
-  "mouthpiece",
-  "mover",
-  "movie",
-  "mowing",
-  "murderer",
-  "musician",
-  "mutation",
-  "mythology",
-  "narration",
-  "narrator",
-  "nationality",
-  "negligence",
-  "neighborhood",
-  "neighbour",
-  "nervousness",
-  "networking",
-  "nexus",
-  "nightmare",
-  "nobility",
-  "nobody",
-  "noodle",
-  "normalcy",
-  "notification",
-  "nourishment",
-  "novella",
-  "nucleus",
-  "nuisance",
-  "nursery",
-  "nutrition",
-  "nylon",
-  "oasis",
-  "obscenity",
-  "obscurity",
-  "observer",
-  "offense",
-  "onslaught",
-  "operation",
-  "opportunity",
-  "opposition",
-  "oracle",
-  "orchestra",
-  "organisation",
-  "organizer",
-  "orientation",
-  "originality",
-  "ounce",
-  "outage",
-  "outcome",
-  "outdoors",
-  "outfield",
-  "outing",
-  "outpost",
-  "outset",
-  "overseer",
-  "owner",
-  "oxygen",
-  "pairing",
-  "panther",
-  "paradox",
-  "parliament",
-  "parsley",
-  "parson",
-  "passenger",
-  "pasta",
-  "patchwork",
-  "pathos",
-  "patriotism",
-  "pendulum",
-  "penguin",
-  "permission",
-  "persona",
-  "perusal",
-  "pessimism",
-  "peter",
-  "philosopher",
-  "phosphorus",
-  "phrasing",
-  "physique",
-  "piles",
-  "plateau",
-  "playing",
-  "plaza",
-  "plethora",
-  "plurality",
-  "pneumonia",
-  "pointer",
-  "poker",
-  "policeman",
-  "polling",
-  "poster",
-  "posterity",
-  "posting",
-  "postponement",
-  "potassium",
-  "pottery",
-  "poultry",
-  "pounding",
-  "pragmatism",
-  "precedence",
-  "precinct",
-  "preoccupation",
-  "pretense",
-  "priesthood",
-  "prisoner",
-  "privacy",
-  "probation",
-  "proceeding",
-  "proceedings",
-  "processing",
-  "processor",
-  "progression",
-  "projection",
-  "prominence",
-  "propensity",
-  "prophecy",
-  "prorogation",
-  "prospectus",
-  "protein",
-  "prototype",
-  "providence",
-  "provider",
-  "provocation",
-  "proximity",
-  "puberty",
-  "publicist",
-  "publicity",
-  "publisher",
-  "pundit",
-  "putting",
-  "quantity",
-  "quart",
-  "quilting",
-  "quorum",
-  "racism",
-  "radiance",
-  "ralph",
-  "rancher",
-  "ranger",
-  "rapidity",
-  "rapport",
-  "ratification",
-  "rationality",
-  "reaction",
-  "reader",
-  "reassurance",
-  "rebirth",
-  "receptor",
-  "recipe",
-  "recognition",
-  "recourse",
-  "recreation",
-  "rector",
-  "recurrence",
-  "redemption",
-  "redistribution",
-  "redundancy",
-  "refinery",
-  "reformer",
-  "refrigerator",
-  "regularity",
-  "regulator",
-  "reinforcement",
-  "reins",
-  "reinstatement",
-  "relativism",
-  "relaxation",
-  "rendition",
-  "repayment",
-  "repentance",
-  "repertoire",
-  "repository",
-  "republic",
-  "reputation",
-  "resentment",
-  "residency",
-  "resignation",
-  "restaurant",
-  "resurgence",
-  "retailer",
-  "retention",
-  "retirement",
-  "reviewer",
-  "riches",
-  "righteousness",
-  "roadblock",
-  "robber",
-  "rocks",
-  "rubbing",
-  "runoff",
-  "saloon",
-  "salvation",
-  "sarcasm",
-  "saucer",
-  "savior",
-  "scarcity",
-  "scenario",
-  "scenery",
-  "schism",
-  "scholarship",
-  "schoolboy",
-  "schooner",
-  "scissors",
-  "scolding",
-  "scooter",
-  "scouring",
-  "scrimmage",
-  "scrum",
-  "seating",
-  "sediment",
-  "seduction",
-  "seeder",
-  "seizure",
-  "self-confidence",
-  "self-control",
-  "self-respect",
-  "semicolon",
-  "semiconductor",
-  "semifinal",
-  "senator",
-  "sending",
-  "serenity",
-  "seriousness",
-  "servitude",
-  "sesame",
-  "setup",
-  "sewing",
-  "sharpness",
-  "shaving",
-  "shoplifting",
-  "shopping",
-  "siding",
-  "simplicity",
-  "simulation",
-  "sinking",
-  "skate",
-  "sloth",
-  "slugger",
-  "snack",
-  "snail",
-  "snapshot",
-  "snark",
-  "soccer",
-  "solemnity",
-  "solicitation",
-  "solitude",
-  "somewhere",
-  "sophistication",
-  "sorcery",
-  "souvenir",
-  "spaghetti",
-  "specification",
-  "specimen",
-  "specs",
-  "spectacle",
-  "spectre",
-  "speculation",
-  "sperm",
-  "spoiler",
-  "squad",
-  "squid",
-  "staging",
-  "stagnation",
-  "staircase",
-  "stairway",
-  "stamina",
-  "standpoint",
-  "standstill",
-  "stanza",
-  "statement",
-  "stillness",
-  "stimulus",
-  "stocks",
-  "stole",
-  "stoppage",
-  "storey",
-  "storyteller",
-  "stylus",
-  "subcommittee",
-  "subscription",
-  "subsidy",
-  "suburb",
-  "success",
-  "sufferer",
-  "supposition",
-  "suspension",
-  "sweater",
-  "sweepstakes",
-  "swimmer",
-  "syndrome",
-  "synopsis",
-  "syntax",
-  "system",
-  "tablespoon",
-  "taker",
-  "tavern",
-  "technology",
-  "telephony",
-  "template",
-  "tempo",
-  "tendency",
-  "tendon",
-  "terrier",
-  "terror",
-  "terry",
-  "theater",
-  "theology",
-  "therapy",
-  "thicket",
-  "thoroughfare",
-  "threshold",
-  "thriller",
-  "thunderstorm",
-  "ticker",
-  "tiger",
-  "tights",
-  "to-day",
-  "tossing",
-  "touchdown",
-  "tourist",
-  "tourney",
-  "toxicity",
-  "tracing",
-  "tractor",
-  "translation",
-  "transmission",
-  "transmitter",
-  "trauma",
-  "traveler",
-  "treadmill",
-  "trilogy",
-  "trout",
-  "tuning",
-  "twenties",
-  "tycoon",
-  "tyrant",
-  "ultimatum",
-  "underdog",
-  "underwear",
-  "unhappiness",
-  "unification",
-  "university",
-  "uprising",
-  "vaccination",
-  "validity",
-  "vampire",
-  "vanguard",
-  "variation",
-  "vegetation",
-  "verification",
-  "viability",
-  "vicinity",
-  "victory",
-  "viewpoint",
-  "villa",
-  "vindication",
-  "violation",
-  "vista",
-  "vocalist",
-  "vogue",
-  "volcano",
-  "voltage",
-  "vomiting",
-  "vulnerability",
-  "waistcoat",
-  "waitress",
-  "wardrobe",
-  "warmth",
-  "watchdog",
-  "wealth",
-  "weariness",
-  "whereabouts",
-  "whisky",
-  "whiteness",
-  "widget",
-  "width",
-  "windfall",
-  "wiring",
-  "witchcraft",
-  "withholding",
-  "womanhood",
-  "words",
-  "workman",
-  "youngster"
-]
-
-let nextId = 1;
-
-function buildData(count) {
-  const data = new Array(count);
-  for (let i = 0; i < count; i++) {
-    data[i] = {
-      id: nextId++,
-      label: `${adjectives[random(adjectives.length)]} ${colors[random(colors.length)]} ${nouns[random(nouns.length)]}`,
-    };
-  }
-  return data;
-}
-
-const GlyphIcon = <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>;
-
-class RowLable extends React.Component {
-  onSelect = () => {
-    this.props.select(this.props.item);
-  }
-
-  onRemove = () => {
-    this.props.remove(this.props.item);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return nextProps.item !== this.props.item || nextProps.selected !== this.props.selected;
-  }
-
+class Label extends Component {
   render() {
-    let {toGenerate,  selected, item} = this.props;
+    const tabId = this.props.tabId
+    const labelId = this.props.labelId
 
-    if (toGenerate == 1){
-    return (<tr className={selected ? "danger" : ""}>
-      <td className="col-md-1" onClick={this.onRemove} >{item.id}</td>
-      <td className="col-md-4"><label onClick={this.onSelect}>{item.label}</label></td>
-      <td className="col-md-6"></td>
-    </tr>);
-    } else if (toGenerate ==2){
-      return (<tr className={selected ? "danger" : ""}>
-        <td className="col-md-1">{item.id}</td>
-        <td className="col-md-4"><textarea onClick={this.onSelect} defaultValue={item.label}></textarea></td>
-        <td className="col-md-1"><a onClick={this.onRemove}>{GlyphIcon}</a></td>
-        <td className="col-md-6"></td>
-      </tr>); 
-    } else if (toGenerate == 3){
-      return (
-        <TabList>
-        <Tab name={item.id}> {item.label}</Tab>
-        </TabList>
-      );
-    }
-     else return (false);
-  }
-}
-
-function Button({ id, cb, title }) {
-  return (
-    <div className="col-sm-6 smallpad">
-      <button type="button" className="btn btn-primary btn-block" id={id} onClick={cb}>{title}</button>
-    </div>
-  );
-}
-
-
-class Jumbotron extends React.Component {
-  shouldComponentUpdate() {
-    return false;
-  }
-
-  render() {
-    const { ctbl, cttbl, cttb, ctttb, cht, ctt, test, add, update, changeval ,clear, swapRows } = this.props;
     return (
-      <div className="jumbotron">
-        <div className="row">
-          
-          <div className="col-md-6">
-            <div className="row">
-              <Button id="ctbl" title="Create 1,000 labels" cb={ctbl} />
-              <Button id="ctbl" title="Create 10,000 labels" cb={cttbl} />
-              
-              <Button id="ctbl" title="Create 1,000 Textboxes" cb={cttb}/>
-              <Button id="ctbl" title="Create 10,000 Textboxes" cb={ctttb}/>
-
-              <Button id="ctbl" title="Create 1,000 Tabs" cb={cht} />
-              <Button id="ctbl" title="Create 10,000 Tabs" cb={ctt} />
-
-              <Button id="add" title="Append 1,000 rows" cb={add} />
-              <Button id="changeval" title="Change all Vals" cb={changeval} />
-              <Button id="update" title="Update every 10th row" cb={update} />
-              <Button id="clear" title="Clear" cb={clear} />
-              <Button id="swaprows" title="Swap Rows" cb={swapRows} />
-            </div>
-          </div>
-        </div>
+      <div className="label">
+        {(tabId ? <> {tabId} - </> : <></>)}  {labelId} - {this.props.children}<slot></slot>
       </div>
-    );
+    )
+  }
+}
+
+class Tabs extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      activeTab: 0
+    }
+  }
+  render() {
+    console.log("render tabs")
+    console.log("active tab"+this.state.activeTab)
+
+    return (
+      <div>
+        {
+          this.props.tabData.map(tab => { return <TabButton key={Object.uid(tab)} tabId={tab.id} onActivate={e => { console.log("click"); this.setState({ activeTab: e }) } }></TabButton> })
+        }
+        {
+          this.props.tabData.map(tab => { return <TabContent key={Object.uid(tab)} tabId={tab.id} activeTab={this.state.activeTab} labelData={tab.data}></TabContent> })
+        }
+      </div>
+    )
+  }
+}
+
+class TabButton extends Component {
+  render() {    
+    return (
+      <button id={'tab-' + this.props.tabId} onClick={(e) => this.props.onActivate(this.props.tabId)} type="button">Tab {this.props.tabId}</button>
+    )
+  }
+}
+
+class TabContent extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      activeTab: this.props.activeTab
+    }
+  }
+  render() {
+    const draw = (this.props.activeTab == this.props.tabId || (this.props.tabId == 0 && !this.props.activeTab))
+    const labelData = this.props.labelData
+    console.log("activeTab"+this.props.activeTab)
+
+    if(draw) {
+      console.log("rendering " + this.props.tabId)
+      return (
+        <>
+        {
+          labelData.map((v) => <Label id={"tbl-" + v.tabId + "-" + v.id} tabId={v.tabId} labelId={v.labelId}>{v.name}</Label>)
+        }
+        </>
+      )
+    } else {
+      console.log("not rendering " + this.props.tabId)
+      return (<></>)
+    }
+  }
+}
+
+class TextBox extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      value: this.props.textBox.text
+    }
+  }
+
+  render() {
+    return (
+      <input id={"tb-" + this.props.textBox.id} onChange={(name) => this.setState({ value: name })} value={this.state.value} type="text"/>
+    )
   }
 }
 
 class App extends Component {
   state = {
-    data: [],
-    testdata: [],
-    selected: 0,
-    toGenerate: 0,
+    labels: [],
+    generatedLabels: [],
+
+    tabs: [],
+    generatedTabs: [],
+    
+    textBoxes: [],
+    generatedTextBoxes: []
   };
 
+  clear = () => {
+    this.setState({ labels: [] })
+    this.setState({ generatedLabels: [] })
+
+    this.setState({ tabs: [] })
+    this.setState({ generatedTabs: [] })
+
+    this.setState({ textBoxes: [] })
+    this.setState({ generatedTextBoxes: [] })
+  }
+
+  trackById(index, item) {
+    return item.id
+  }
+
+
+
+
+  //Labels
+
   ctbl = () => {
-    this.setState({data: buildData(1000), selected: 0, toGenerate: 1});  
+    let labels = []
+
+    for(let i = 0; i < 1000; i++) {
+      labels.push(new LabelData(i, this.generateRandomWords()))
+    }
+
+    this.setState({ generatedLabels: labels })
   }
 
   cttbl = () => {
-    this.setState({ data: buildData(10000), selected: 0, toGenerate: 1 });
+    let labels = []
+
+    for(let i = 0; i < 10000; i++) {
+      labels.push(new LabelData(i, this.generateRandomWords()))
+    }
+
+    this.setState({ generatedLabels: labels })
   }
 
-  cttb = () => {
-    this.setState({ data: buildData(1000), selected: 0, toGenerate: 2 });
+  ubl = () => {
+    console.log(this.state)
+    this.setState({ labels: this.state.generatedLabels })
   }
-  
-  ctttb = () => {
-    this.setState({ data: buildData(10000), selected: 0, toGenerate: 2 });
+
+  sbl = () => {
+    let tmp = this.state.labels.slice()
+    this.swap(tmp, 0, 50)
+    this.setState({labels: tmp})
   }
+
+  srbl = () => {
+    let tmp = this.state.labels.slice()
+    this.swap(tmp, Math.floor(Math.random() * this.state.labels.length), Math.floor(Math.random() * this.state.labels.length))
+    this.setState({labels: tmp})
+  }
+
+  strbl = () => {
+    let tmp = this.state.labels.slice()
+
+    for(let i = 0; i < 1000; i++) {
+      this.swap(tmp, Math.floor(Math.random() * this.state.generatedLabels.length), Math.floor(Math.random() * this.state.generatedLabels.length))
+    }
+
+    this.setState({ generatedLabels: tmp })
+  }
+
+  rbl = () => {
+    let tmpLabels = this.state.labels.slice(1)
+
+    this.setState({
+      labels: tmpLabels
+    })
+  }
+
+  rrbl = () => {
+    let tmp = this.state.labels.slice()
+    let index = Math.floor(Math.random() * this.state.labels.length)
+
+    tmp.splice(index, 1)
+
+    this.setState({ labels: tmp })
+  }
+
+  rtrbl = () => {
+    let indices = []
+
+    for(let i = 0; i < 1000; i++) {
+      indices.push(Math.floor(Math.random() * this.state.generatedLabels.length))
+    }
+
+    this.setState({ generatedLabels: this.state.labels.filter((v, i, a) => { return !indices.includes(i) }) })
+  }
+
+
+
+
+  //Tabs
 
   cht = () => {
-    this.setState({ data: buildData(1000), selected: 0, toGenerate: 3 });
+    let tmp = []
+
+    for(let i = 0; i < 100; i++) {
+      tmp.push(new TabData(i, this.generateRandomArray(1000)))
+    }
+
+    this.setState({ generatedTabs: tmp })
   }
 
   ctt = () => {
-    this.setState({ data: buildData(10000), selected: 0, toGenerate: 3 });
-  }
+    let tmp = []
 
-  runLots = () => {
-    this.setState({ data: buildData(10000), selected: 0 });
-  }
-
-  add = () => {
-    this.setState({ data: this.state.data.concat(buildData(1000)), selected: this.state.selected });
-  }
-
-  changeval = () =>{
-    const data = this.state.data;
-    const data2 = buildData(data.length);
-    for (let i = 0; i < data.length; i++) {
-      const item = data[i];
-      data[i] = { id: item.id, label: data2[i].label};
+    for(let i = 0; i < 1000; i++) {
+      tmp.push(new TabData(i, this.generateRandomArray(1000)))
     }
-    this.forceUpdate();
+
+    this.setState({ generatedTabs: tmp })
   }
 
-  update = () => {
-    const data = this.state.data;
-    for (let i = 0; i < data.length; i += 10) {
-      const item = data[i];
-      data[i] = { id: item.id, label: item.label + ' !!!' };
+  cttt = () => {
+    let tmp = []
+
+    for(let i = 0; i < 10000; i++) {
+      this.state.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
     }
-    this.forceUpdate();
+
+    this.setState({ generatedTabs: tmp })
   }
 
-  select = (item) => {
-    this.setState({ selected: item.id });
+  ut = () => {
+    this.setState({ tabs: this.state.generatedTabs })
   }
 
-  remove = (item) => {
-    const data = this.state.data;
-    data.splice(data.indexOf(item), 1);
-    this.forceUpdate();
-  }
+  strlrt = () => {
+    console.log(this.state.tabs)
+    let tmpTabs = this.state.tabs.slice()
+    
+    for(let i = 0; i < 10000; i++) {
+      let a = Math.floor(Math.random() * tmpTabs.length)
+      let aa = Math.floor(Math.random() * tmpTabs[a].data.length)
+      let b = Math.floor(Math.random() * tmpTabs.length)
+      let bb = Math.floor(Math.random() * tmpTabs[b].data.length)
 
-  clear = () => {
-    this.setState({ data: [], selected: 0 , toGenerate: 0});
-  }
-
-  swapRows = () => {
-    const data = this.state.data;
-    if (data.length > 998) {
-      let temp = data[1];
-      data[1] = data[998];
-      data[998] = temp;
+      let tmp = tmpTabs[a].data[aa]
+      tmpTabs[a].data[aa] = tmpTabs[b].data[bb]
+      tmpTabs[b].data[bb] = tmp
     }
-    this.forceUpdate();
+
+    this.setState({ tabs: tmpTabs })
+  }
+
+  shtrlrt = () => {
+    let tmpTabs = this.state.tabs.slice()
+
+    for(let i = 0; i < 100000; i++) {
+      let a = Math.floor(Math.random() * tmpTabs.length)
+      let aa = Math.floor(Math.random() * tmpTabs[a].data.length)
+      let b = Math.floor(Math.random() * tmpTabs.length)
+      let bb = Math.floor(Math.random() * tmpTabs[b].data.length)
+
+      let tmp = tmpTabs[a].data[aa]
+      tmpTabs[a].data[aa] = tmpTabs[b].data[bb]
+      tmpTabs[b].data[bb] = tmp
+    }
+
+    this.setState({ tabs: tmpTabs })
+  }
+
+
+
+
+  //TextBoxes
+
+  cttb = () => {
+    let tmp = []
+
+    for(let i = 0; i < 1000; i++) {
+      tmp.push(new TextBoxData(i, this.generateRandomWords()))
+    }
+
+    this.setState({ generatedTextBoxes: tmp })
+  }
+
+  ctttb = () => {
+    let tmp = []
+
+    for(let i = 0; i < 10000; i++) {
+      tmp.push(new TextBoxData(i, this.generateRandomWords()))
+    }
+
+    this.setState({ generatedTextBoxes: tmp })
+  }
+
+  utb = () => {
+    this.setState({ textBoxes: this.state.generatedTextBoxes })
+  }
+
+  chthtb = () => {
+    let tmp = this.state.textBoxes.slice()
+
+    for(let i = 0; i < 100; i++) {
+      let index = Math.floor(Math.random() * tmp.length)
+      tmp[index] = new TextBoxData(tmp[index].id, this.generateRandomWords())
+    }
+
+    this.setState({ textBoxes: tmp })
+  }
+
+  chtttb = () => {
+    let tmp = this.state.textBoxes.slice()
+
+    for(let i = 0; i < 1000; i++) {
+      let index = Math.floor(Math.random() * tmp.length)
+      tmp[index] = new TextBoxData(tmp[index].id, this.generateRandomWords())
+    }
+
+    this.setState({ textBoxes: tmp })
+  }
+
+  chttttb = () => {
+    let tmp = this.state.textBoxes.slice()
+
+    for(let i = 0; i < 10000; i++) {
+      let index = Math.floor(Math.random() * tmp.length)
+      tmp[index] = new TextBoxData(tmp[index].id, this.generateRandomWords())
+    }
+
+    this.setState({ textBoxes: tmp })
+  }
+
+  rtb = () => {
+    let tmp = this.state.textBoxes.slice()
+    tmp.shift()
+    this.setState({ textBoxes: tmp })
+  }
+
+  rrtb = () => {
+    let tmp = this.state.textBoxes.slice()
+    tmp.splice(Math.floor(Math.random() * this.state.textBoxes.length), 1)
+    this.setState({ textBoxes: tmp })
+  }
+
+  rhrtb = () => {
+    let indices = []
+
+    for(let i = 0; i < 100; i++) {
+      indices.push(Math.floor(Math.random() * this.state.generatedTextBoxes.length))
+    }
+
+    this.setState({ generatedTextBoxes: this.state.textBoxes.filter((v, i, a) => { return !indices.includes(i) }) })
+  }
+
+  rtrtb = () => {
+    let indices = []
+
+    for(let i = 0; i < 1000; i++) {
+      indices.push(Math.floor(Math.random() * this.state.generatedTextBoxes.length))
+    }
+
+    this.setState({ generatedTextBoxes: this.state.textBoxes.filter((v, i, a) => { return !indices.includes(i) }) })
+  }
+  
+  showTab(index) {
+    console.log(index)
+    this.activeTab = index
+  }
+
+  swap(arr, indexA, indexB) {
+    let tmp = arr[indexA]
+    arr[indexA] = arr[indexB]
+    arr[indexB] = tmp
+  }
+
+  generateRandomArray(size) {
+    let result = []
+
+    for(let i = 0; i < size; i++) {
+      result.push(new LabelData(i, this.generateRandomWords()))
+    }
+
+    return result
+  }
+
+  generateRandomWords = () => {
+    return colors[Math.floor(Math.random() * colors.length)] + " " + adjectives[Math.floor(Math.random() * adjectives.length)] + " " + nouns[Math.floor(Math.random() * nouns.length)]
   }
 
   render() {
     return (
-    <div className="App">
-        <Jumbotron ctbl={this.ctbl} cttbl={this.cttbl} cttb={this.cttb} ctttb={this.ctttb} cht={this.cht} ctt={this.ctt} add={this.add} update={this.update} changeval={this.changeval} clear={this.clear} swapRows={this.swapRows} />
-      <table className="table table-hover table-striped test-data"><tbody>
-          {this.state.data.map((item) => (
-            <RowLable toGenerate={this.state.toGenerate} key={item.id} item={item} selected={this.state.selected === item.id} select={this.select} remove={this.remove}></RowLable>
-        ))}
-      </tbody>
-      </table>
-      <span className="preloadicon glyphicon glyphicon-remove" aria-hidden="true"></span>
-    </div>
+      <div id="buttons">
+        Init-Label:
+        <button id="ctbl" onClick={this.ctbl} type="button">Create 1000 bound labels</button>
+        <button id="cttbl" onClick={this.cttbl} type="button">Create 10000 bound labels</button>
+        <br />
+        Init-Textboxes:
+        <button id="cttb" onClick={this.cttb} type="button">Create 1000 text boxes</button>
+        <button id="ctttb" onClick={this.ctttb} type="button">Create 10000 text boxes</button>
+        <br />
+        Init-Tabs:
+        <button id="cht" onClick={this.cht} type="button">Create 100 tabs with 1000 entries</button>
+        <button id="ctt" onClick={this.ctt} type="button">Create 1000 tabs with 1000 entries</button>
+        <button id="cttt" onClick={this.cttt} type="button">Create 10000 tabs with 1000 entries</button>
+        <br />
+        Execute-Label:
+        <button id="ubl" onClick={this.ubl} type="button">Update bound labels</button>
+        <button id="sbl" onClick={this.sbl} type="button">Swap two labels</button>
+        <button id="srbl" onClick={this.srbl} type="button">Swap two random labels</button>
+        <button id="strbl" onClick={this.strbl} type="button">Swap 1000 random labels</button>
+        <br />
+        <button id="rbl" onClick={this.rbl} type="button">Remove a label</button>
+        <button id="rrbl" onClick={this.rrbl} type="button">Remove a random label</button>
+        <button id="rtrbl" onClick={this.rtrbl} type="button">Remove 1000 random labels</button>
+        <br />
+        Execute-Tabs:
+        <button id="ut" onClick={this.ut} type="button">Update tabs</button>
+        <br />
+        <button id="strlrt" onClick={this.strlrt} type="button">Switch 10000 random labels from random tabs</button>
+        <button id="shtrlrt" onClick={this.shtrlrt} type="button">Switch 100000 random labels from random tabs</button>
+        <br />
+        Execute-Textboxes:
+        <button id="utb" onClick={this.utb} type="button">Update textboxes</button>
+        <button id="chthtb" onClick={this.chthtb} type="button">Change text 100 textboxes</button>
+        <button id="chtttb" onClick={this.chtttb} type="button">Change text 1000 textboxes</button>
+        <button id="chttttb" onClick={this.chttttb} type="button">Change text 10000 textboxes</button>
+        <br />
+        <button id="rtb" onClick={this.rtb} type="button">Remove textbox</button>
+        <button id="rrtb" onClick={this.rrtb} type="button">Remove random textbox</button>
+        <button id="rhrtb" onClick={this.rhrtb} type="button">Remove 100 random textboxes</button>
+        <button id="rtrtb" onClick={this.rtrtb} type="button">Remove 1000 random textboxes</button>
+        <br />
+        Clear:
+        <button id="clear" onClick={this.clear} type="button">Clear</button>
+        
+        <div id="labels">
+          {
+            this.state.labels.map((v) => <Label key={Object.uid(v)} id={"bl-" + v.id} labelId={v.id}>{v.name}</Label>)
+          }
+        </div>
+        <div id="textBoxes">
+          {
+            this.state.textBoxes.map((v) => <TextBox key={Object.uid(v)} textBox={v}></TextBox>)
+          }
+        </div>
+        <div id="tabs">
+          {
+            <Tabs tabData={this.state.tabs}></Tabs>
+          }
+        </div>
+      
+        {/* <div id="labels">
+          <app-label *ngFor="let label of labels;trackBy: trackById" id="bl-{{label.id}}" labelId="{{label.id}}">{{label.name}}</app-label>
+        </div>
+        <div id="textBoxes">
+          <app-text-box *ngFor="let textbox of textBoxes;let i=index;trackBy: trackById" [(tb)]="textBoxes[i]"></app-text-box>
+        </div>
+        <div id="tabs">
+          <app-tabs [tabsData]="tabs"></app-tabs>
+        </div> */}
+      </div>
     );
   }
 }

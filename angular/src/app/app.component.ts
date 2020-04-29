@@ -2323,27 +2323,27 @@ export class AppComponent implements OnInit {
   }
 
   rhrtb() {
-    this.generatedLabels = this.labels.slice()
+    this.generatedTextBoxes = this.textBoxes.slice()
     let indices = []
 
     for(let i = 0; i < 100; i++) {
-      indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+      indices.push(Math.floor(Math.random() * this.generatedTextBoxes.length))
     }
 
-    this.generatedLabels = this.labels.filter((v, i, a) => {
+    this.generatedTextBoxes = this.textBoxes.filter((v, i, a) => {
       return !indices.includes(i)
     })
   }
 
   rtrtb() {
-    this.generatedLabels = this.labels.slice()
+    this.generatedTextBoxes = this.textBoxes.slice()
     let indices = []
 
     for(let i = 0; i < 1000; i++) {
-      indices.push(Math.floor(Math.random() * this.generatedLabels.length))
+      indices.push(Math.floor(Math.random() * this.generatedTextBoxes.length))
     }
 
-    this.generatedLabels = this.labels.filter((v, i, a) => {
+    this.generatedTextBoxes = this.textBoxes.filter((v, i, a) => {
       return !indices.includes(i)
     })
   }
