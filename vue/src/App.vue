@@ -25,9 +25,6 @@
   <br>
   Execute-Tabs:
   <button id="ut" v-on:click="ut" type="button">Update tabs</button>
-  <button id="st" v-on:click="st" type="button">Switch tabs</button>
-  <button id="srt" v-on:click="srt" type="button">Switch random tabs</button>
-  <button id="shrt" v-on:click="shrt" type="button">Switch random 100 tabs</button>
   <br>
   <button id="strlrt" v-on:click="strlrt" type="button">Switch 10000 random labels from random tabs</button>
   <button id="shtrlrt" v-on:click="shtrlrt" type="button">Switch 100000 random labels from random tabs</button>
@@ -164,6 +161,7 @@ export default {
     data: () => ({
         rows: store.data,
         selected: store.selected,
+        activeTab: 0,
         labels: [],
         generatedLabels: [],
         tabs: [],
@@ -282,20 +280,6 @@ export default {
 
         ut() {
           this.tabs = this.generatedTabs
-        },
-
-        st() {
-          this.activeTab = (this.activeTab == 0) ? 50 : 0
-        },
-
-        srt() {
-          this.activeTab = Math.floor(Math.random() * this.tabs.length)
-        },
-
-        shrt() {
-          for(let i = 0; i < 100; i++) {
-            this.activeTab = Math.floor(Math.random() * this.tabs.length)
-          }
         },
 
         strlrt() {

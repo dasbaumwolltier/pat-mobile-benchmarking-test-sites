@@ -2245,20 +2245,6 @@ export class AppComponent implements OnInit {
     this.tabs = this.generatedTabs
   }
 
-  st() {
-    this.activeTab = (this.activeTab == 0) ? 50 : 0
-  }
-
-  srt() {
-    this.activeTab = Math.floor(Math.random() * this.tabs.length)
-  }
-
-  shrt() {
-    for(let i = 0; i < 100; i++) {
-      this.activeTab = Math.floor(Math.random() * this.tabs.length)
-    }
-  }
-
   strlrt() {
     for(let i = 0; i < 10000; i++) {
       let a = Math.floor(Math.random() * this.tabs.length)
