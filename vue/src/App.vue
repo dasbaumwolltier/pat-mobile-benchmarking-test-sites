@@ -292,12 +292,9 @@ export default {
           this.activeTab = Math.floor(Math.random() * this.tabs.length)
         },
 
-        shrt(beginIndex = 0) {
-          if(beginIndex < 100) {
-            setTimeout(() => {
-              this.activeTab = Math.floor(Math.random() * this.tabs.length)
-              this.shrt(beginIndex + 1)
-            }, 0)
+        shrt() {
+          for(let i = 0; i < 100; i++) {
+            this.activeTab = Math.floor(Math.random() * this.tabs.length)
           }
         },
 
@@ -404,10 +401,7 @@ export default {
           })
         },
 
-
-
         showTab(index) {
-          console.log(index)
           this.activeTab = index
         },
 
