@@ -47,7 +47,7 @@
   <button id="clear" v-on:click="clear" type="button">Clear</button>
 
   <div id="labels">
-    <app-label v-for="label in labels" :key="label.id" :id="'bl' + label.id" :labelId="label.id">{{label.name}}</app-label>
+    <app-label v-for="label in labels" :key="label.id" :id="'bl-' + label.id" :labelId="label.id">{{label.name}}</app-label>
   </div>
   <div id="textBoxes">
     <app-textbox v-for="(textbox, index) in textBoxes" :key="textbox.id" v-model="textBoxes[index]"></app-textbox>
