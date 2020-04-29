@@ -4,7 +4,8 @@
   "private": true,
   "homepage": "/frameworks/keyed/react/build",
   "js-framework-benchmark": {
-    "frameworkVersionFromPackage": "react"
+    "frameworkVersionFromPackage": "react",
+    "customURL": "/build"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
