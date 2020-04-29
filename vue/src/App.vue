@@ -47,7 +47,13 @@
   <button id="clear" v-on:click="clear" type="button">Clear</button>
 
   <div id="labels">
-    <app-label></app-label>
+    <app-label v-for="label in labels" :key="label.id" :id="'br' + label.id" :labelId="label.id">{{label.name}}</app-label>
+  </div>
+  <div id="textBoxes">
+    <app-textbox v-for="(textbox, index) in textBoxes" :key="textbox.id" v-model="textBoxes[index]"></app-textbox>
+  </div>
+  <div>
+    <app-tabs :tabs="tabs"></app-tabs>
   </div>
 
   <!-- <div id="labels">
@@ -151,10 +157,18 @@
 import { Store } from './store';
 var store = new Store;
 
+import { LabelData, TabData, TextBoxData, colors, adjectives, nouns } from './lib'
+
 export default {
     data: () => ({
         rows: store.data,
-        selected: store.selected
+        selected: store.selected,
+        labels: [],
+        generatedLabels: [],
+        tabs: [],
+        generatedTabs: [],
+        textBoxes: [],
+        generatedTextBoxes: []
     }),
     methods: {
         clear() {
@@ -177,10 +191,11 @@ export default {
         //Labels
 
         ctbl() {
+          console.log(this.generateRandomWords())
           this.generatedLabels = []
 
           for(let i = 0; i < 1000; i++) {
-            this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+            this.generatedLabels.push(new LabelData(i, this.generateRandomWords()))
           }
         },
 
@@ -188,7 +203,7 @@ export default {
           this.generatedLabels = []
 
           for(let i = 0; i < 10000; i++) {
-            this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+            this.generatedLabels.push(new LabelData(i, this.generateRandomWords()))
           }
         },
 
@@ -244,7 +259,7 @@ export default {
           this.generatedTabs = []
 
           for(let i = 0; i < 100; i++) {
-            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
           }
         },
 
@@ -252,7 +267,7 @@ export default {
           this.generatedTabs = []
 
           for(let i = 0; i < 1000; i++) {
-            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
           }
         },
 
@@ -260,7 +275,7 @@ export default {
           this.generatedTabs = []
 
           for(let i = 0; i < 10000; i++) {
-            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
           }
         },
 
@@ -320,7 +335,7 @@ export default {
           this.generatedTextBoxes = []
 
           for(let i = 0; i < 1000; i++) {
-            this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
+            this.generatedTextBoxes.push(new TextBoxData(i, this.generateRandomWords()))
           }
         },
 
@@ -328,7 +343,7 @@ export default {
           this.generatedTextBoxes = []
 
           for(let i = 0; i < 10000; i++) {
-            this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
+            this.generatedTextBoxes.push(new TextBoxData(i, this.generateRandomWords()))
           }
         },
 
@@ -405,7 +420,7 @@ export default {
           let result = []
 
           for(let i = 0; i < size; i++) {
-            result.push(new Label(i, this.generateRandomWords()))
+            result.push(new LabelData(i, this.generateRandomWords()))
           }
        this.labels = []
           this.generatedLabels = []
@@ -430,7 +445,7 @@ export default {
           this.generatedLabels = []
 
           for(let i = 0; i < 1000; i++) {
-            this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+            this.generatedLabels.push(new LabelData(i, this.generateRandomWords()))
           }
         },
 
@@ -438,7 +453,7 @@ export default {
           this.generatedLabels = []
 
           for(let i = 0; i < 10000; i++) {
-            this.generatedLabels.push(new Label(i, this.generateRandomWords()))
+            this.generatedLabels.push(new LabelData(i, this.generateRandomWords()))
           }
         },
 
@@ -494,7 +509,7 @@ export default {
           this.generatedTabs = []
 
           for(let i = 0; i < 100; i++) {
-            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
           }
         },
 
@@ -502,7 +517,7 @@ export default {
           this.generatedTabs = []
 
           for(let i = 0; i < 1000; i++) {
-            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
           }
         },
 
@@ -510,7 +525,7 @@ export default {
           this.generatedTabs = []
 
           for(let i = 0; i < 10000; i++) {
-            this.generatedTabs.push(new Tab(i, this.generateRandomArray(1000)))
+            this.generatedTabs.push(new TabData(i, this.generateRandomArray(1000)))
           }
         },
 
@@ -570,7 +585,7 @@ export default {
           this.generatedTextBoxes = []
 
           for(let i = 0; i < 1000; i++) {
-            this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
+            this.generatedTextBoxes.push(new TextBoxData(i, this.generateRandomWords()))
           }
         },
 
@@ -578,7 +593,7 @@ export default {
           this.generatedTextBoxes = []
 
           for(let i = 0; i < 10000; i++) {
-            this.generatedTextBoxes.push(new TextBox(i, this.generateRandomWords()))
+            this.generatedTextBoxes.push(new TextBoxData(i, this.generateRandomWords()))
           }
         },
 
@@ -655,7 +670,7 @@ export default {
           let result = []
 
           for(let i = 0; i < size; i++) {
-            result.push(new Label(i, this.generateRandomWords()))
+            result.push(new LabelData(i, this.generateRandomWords()))
           }
 
           return result
