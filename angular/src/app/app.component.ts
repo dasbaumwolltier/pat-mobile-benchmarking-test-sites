@@ -2145,7 +2145,7 @@ export class AppComponent implements OnInit {
   }
 
   trackById(index, item) {
-    return item.id
+    return Object['uid'](item)
   }
 
 
@@ -2297,21 +2297,36 @@ export class AppComponent implements OnInit {
   }
 
   chthtb() {
+    let tmp = this.textBoxes.slice()
+
     for(let i = 0; i < 100; i++) {
-      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+      let index = Math.floor(Math.random() * tmp.length)
+      tmp[index] = new TextBox(tmp[index].id, this.generateRandomWords())
     }
+
+    this.textBoxes = tmp
   }
 
   chtttb() {
+    let tmp = this.textBoxes.slice()
+
     for(let i = 0; i < 1000; i++) {
-      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+      let index = Math.floor(Math.random() * tmp.length)
+      tmp[index] = new TextBox(tmp[index].id, this.generateRandomWords())
     }
+
+    this.textBoxes = tmp
   }
 
   chttttb() {
+    let tmp = this.textBoxes.slice()
+
     for(let i = 0; i < 10000; i++) {
-      this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+      let index = Math.floor(Math.random() * tmp.length)
+      tmp[index] = new TextBox(tmp[index].id, this.generateRandomWords())
     }
+
+    this.textBoxes = tmp
   }
 
   rtb() {

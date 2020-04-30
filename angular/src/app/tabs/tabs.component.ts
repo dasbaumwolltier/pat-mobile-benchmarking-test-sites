@@ -21,6 +21,6 @@ export class TabsComponent implements OnInit {
   }
 
   trackById(index, item) {
-    return item.id
+    return Object['uid'](item)
   }
 }

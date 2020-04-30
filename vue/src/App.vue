@@ -44,10 +44,10 @@
   <button id="clear" v-on:click="clear" type="button">Clear</button>
 
   <div id="labels">
-    <app-label v-for="label in labels" :key="label.id" :id="'bl-' + label.id" :labelId="label.id">{{label.name}}</app-label>
+    <app-label v-for="label in labels" :key="Object.uid(label)" :id="'bl-' + label.id" :labelId="label.id">{{label.name}}</app-label>
   </div>
   <div id="textBoxes">
-    <app-textbox v-for="(textbox, index) in textBoxes" :key="textbox.id" v-model="textBoxes[index]"></app-textbox>
+    <app-textbox v-for="(textbox, index) in textBoxes" :key="Object.uid(textbox)" v-model="textBoxes[index]"></app-textbox>
   </div>
   <div id="tabs">
     <app-tabs :tabs="tabs"></app-tabs>
@@ -181,7 +181,7 @@ export default {
           this.generatedTabs = []
         },
         trackById(index, item) {
-          return item.id
+          return Object.uid(item)
         },
 
 
@@ -334,21 +334,36 @@ export default {
         },
 
         chthtb() {
+          let tmp = this.textBoxes.slice()
+
           for(let i = 0; i < 100; i++) {
-            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+            let index = Math.floor(Math.random() * tmp.length)
+            tmp[index] = new TextBoxData(tmp[index].id, this.generateRandomWords())
           }
+
+          this.textBoxes = tmp
         },
 
         chtttb() {
+          let tmp = this.textBoxes.slice()
+
           for(let i = 0; i < 1000; i++) {
-            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+            let index = Math.floor(Math.random() * tmp.length)
+            tmp[index] = new TextBoxData(tmp[index].id, this.generateRandomWords())
           }
+
+          this.textBoxes = tmp
         },
 
         chttttb() {
+          let tmp = this.textBoxes.slice()
+
           for(let i = 0; i < 10000; i++) {
-            this.generatedTextBoxes[Math.floor(Math.random() * this.generatedTextBoxes.length)].text = this.generateRandomWords()
+            let index = Math.floor(Math.random() * tmp.length)
+            tmp[index] = new TextBoxData(tmp[index].id, this.generateRandomWords())
           }
+
+          this.textBoxes = tmp
         },
 
         rtb() {

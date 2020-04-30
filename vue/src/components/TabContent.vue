@@ -1,6 +1,6 @@
 <template>
   <div v-if="activeTab === tabId">
-    <app-label v-for="label in labelData" :key="label.id" :id="'tbl-' + label.tabId + '-' + label.id" :tabId="label.tabId" :labelId="label.id">{{label.name}}</app-label>
+    <app-label v-for="label in labelData" :key="Object.uid(label)" :id="'tbl-' + label.tabId + '-' + label.id" :tabId="label.tabId" :labelId="label.id">{{label.name}}</app-label>
   </div>
 </template>
 
