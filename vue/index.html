@@ -3,6 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>vue</title>
+  <script>
+    (function() {
+      if ( typeof Object.uid == "undefined" ) {
+          var id = 0;
+
+          Object.uid = function(o) {
+              if ( typeof o.__uniqueid == "undefined" ) {
+                  Object.defineProperty(o, "__uniqueid", {
+                      value: ++id,
+                      enumerable: false,
+                      // This could go either way, depending on your
+                      // interpretation of what an "id" is
+                      writable: false
+                  });
+              }
+
+              return o.__uniqueid;
+          };
+      }
+    })();
+  </script>
   </head>
   <body>
     <div id="app"></div>
